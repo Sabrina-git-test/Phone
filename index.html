@@ -3522,7 +3522,6 @@ margin-top: 22px;
 </head>
 <body>
     <div id="phone-screen">
-<!-- 我不希望看到灵动岛这个黑色的区域。
             <div class="dynamic-island">
                 <div class="dynamic-island-content">
                     <div class="music-player">
@@ -3595,7 +3594,6 @@ margin-top: 22px;
                     </div>
                 </div>
             </div>
--->
         <div id="phone-screen">
             <div id="status-bar">
                 <span id="status-bar-time">12:00</span>
@@ -4663,12 +4661,7 @@ margin-top: 22px;
 
 <script>
     document.addEventListener('DOMContentLoaded', () => {
-// Dynamic island disabled: define dummy object to prevent errors
-const dynamicIsland = {
-    style: {},
-    contains: () => false,
-    addEventListener: () => {}
-};
+const dynamicIsland = document.querySelector('.dynamic-island');
 const progressBar = document.querySelector('.progress');
 const progressContainer = document.querySelector('.progress-bar-container');
 const playBtn = document.querySelector('.play-btn');
@@ -4687,7 +4680,29 @@ let progressInterval;
 let progressValue = 0; // 重命名以避免与.progress元素冲突
 
 function updateDynamicIslandUI() {
-    // Dynamic island disabled; no UI updates needed
+    switch (dynamicIslandState) {
+        case 'small':
+            dynamicIsland.style.width = '100px';
+            dynamicIsland.style.height = '36px';
+            dynamicIsland.style.borderRadius = '25px';
+            document.querySelector('.dynamic-island-content').style.opacity = '0';
+            commentSection.classList.remove('active');
+            break;
+        case 'medium':
+            dynamicIsland.style.width = '240px';
+            dynamicIsland.style.height = '135px'; 
+            dynamicIsland.style.borderRadius = '35px';
+            document.querySelector('.dynamic-island-content').style.opacity = '1';
+            commentSection.classList.remove('active'); 
+            break;
+        case 'large':
+            dynamicIsland.style.width = '240px';
+            dynamicIsland.style.height = '220px'; 
+            dynamicIsland.style.borderRadius = '35px';
+            document.querySelector('.dynamic-island-content').style.opacity = '1';
+            commentSection.classList.add('active'); 
+            break;
+    }
 }
 
 dynamicIsland.addEventListener('click', function(e) {
