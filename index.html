@@ -9,277 +9,38 @@
         @font-face { font-family: 'bulangni'; src: url('https://files.catbox.moe/yzfk0h.ttf') format('truetype'); font-weight: normal; font-style: normal; font-display: swap; }
         :root { --screen-width: 350px; --screen-height: 650px; --secondary-bg: #ffffff; --border-color: #e0e0e0; --text-primary: #1f1f1f; --text-secondary: #8a8a8a; --accent-color: #007bff; }
         html { height: 100%; overflow: hidden; }
-body {
-    height: 100%;
-    overflow: hidden;
-    margin: 0;
-    font-family: 'bulangni', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    font-weight: normal;
-    /* 背景色可以根据喜好设定，这里用一个柔和的颜色 */
-    background-color: #f0f2f5; 
-}
-#phone-screen {
-    width: 100%;
-    height: 100%;
-    position: relative;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    background-color: #000; /* 保留一个默认的黑色背景 */
-}
+        body { height: 100%; overflow: hidden; margin: 0; padding: 0px; font-family: 'bulangni', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; font-weight: normal; background-color: #dcdcdc; display: flex; justify-content: center; align-items: center; box-sizing: border-box; }
+        .phone-case {
+            position: relative;
 
-        .dynamic-island {
-            position: absolute;
-            top: 12px; /* Slightly above status bar */
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 36px;
-            background-color: #000;
-            border-radius: 25px ;
-            z-index: 30; /* MODIFIED: Increased z-index */
-            transition: width 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55),
-                        height 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55),
-                        border-radius 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            background: linear-gradient(135deg, #ffccd5 0%, #a2d2ff 100%);
+            border-radius: 50px;
+            padding: 8px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
             overflow: hidden;
         }
 
-        .dynamic-island:hover {
-            width: 240px;
-            height: 135px;
-            border-radius: 35px;
-        }
-
-        .dynamic-island-content {
-            color: white;
-            opacity: 0;
-            transition: opacity 0.3s ease-in-out 0.2s;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            padding: 10px 15px;
-        }
-
-        .dynamic-island:hover .dynamic-island-content {
-            opacity: 1;
-            pointer-events: auto;
-        }
-
-        .music-player {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 100%;
-            height: 100%;
-        }
-
-        .song-info {
-            text-align: center;
-            margin-top: 15px;
-            margin-bottom: 0;
-            width: 100%;
-        }
-
-        .song-title {
-  font-family: -apple-system, BlinkMacSystemFont, "San Francisco", "Helvetica Neue", Helvetica, Arial, sans-serif;
-            font-weight: 600;
-            font-size: 14px;
-            margin-bottom: 3px;
-        }
-
-        .artist {
-  font-family: -apple-system, BlinkMacSystemFont, "San Francisco", "Helvetica Neue", Helvetica, Arial, sans-serif;
-            font-size: 12px;
-            color: #b0b0b0;
-            margin-bottom: 6px;
-        }
-
-        .progress-bar-container {
-            width: 90%;
-            height: 7px;
-            background-color: #404040;
-            border-radius: 3.5px;
-            margin: 5px 0;
-            position: relative;
-            cursor: pointer;
-        }
-
-        .progress {
-            width: 40%;
-            height: 100%;
-            background-color: #fff;
-            border-radius: 3.5px;
-            position: relative;
-            transition: width 0.1s linear;
-        }
-        .progress::after {
+        .phone-case::before {
             content: '';
             position: absolute;
-            right: -5px;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 12px;
-            height: 12px;
-            background-color: white;
-            border-radius: 50%;
-            box-shadow: 0 0 4px rgba(0,0,0,0.3);
+            top: 0; left: 0; right: 0; bottom: 0;
+            background:
+                radial-gradient(circle at 20% 20%, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%),
+                radial-gradient(circle at 80% 80%, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+            border-radius: 50px;
+            pointer-events: none;
         }
 
-        .controls {
-            display: flex;
-            justify-content: flex-end;
-            align-items: center;
-            width: 100%;
-            margin-top: 10px;
-            margin-bottom: 5px;
+        .phone-case::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="220" height="220" viewBox="0 0 220 220"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter><rect width="100%" height="100%" filter="url(%23noise)" opacity="0.05"/></svg>');
+            border-radius: 50px;
+            opacity: 0.3;
+            pointer-events: none;
         }
-
-        .main-controls {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 15px;
-            flex-grow: 1;
-        }
-
-        .side-controls {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 15px;
-            flex-grow: 1;
-
-        }
-
-        .control {
-            cursor: pointer;
-            width: 24px;
-            height: 24px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.5s ease;
-        }
-        .control:hover {
-            transform: scale(1.15);
-            opacity: 0.8;
-        }
-        .control:active {
-            transform: scale(0.95);
-            opacity: 0.6;
-        }
-
-        .heart-btn svg,
-        .play-btn svg,
-        .comment-btn svg,
-        .rewind-btn svg,
-        .forward-btn svg {
-            width: 100%;
-            height: 100%;
-            fill: white;
-        }
-
-        .heart-btn.active svg {
-    fill: #ffccd5; /* 柔和浅粉 */
-        }
-
-        .rewind-btn svg,
-        .forward-btn svg {
-            opacity: 0.7;
-        }
-        /* Comment section styles */
-        .comment-section {
-  /* 新增这两行，强制评论区内部垂直排列 */
-  display: flex;
-  flex-direction: column; /* 垂直方向排列子元素 */
-  gap: 10px; /* 每条评论之间的间距 */
-            width: 100%;
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease-out;
-            margin-top: 5px;
-        }
-
-        .comment-section.active {
-				border-bottom-left-radius:25px;
-				border-bottom-right-radius:25px;
-            max-height: 90px;
-            overflow-y: auto;
-        }
-
-.comment {
-  display: flex;
-  flex-direction: row; /* 明确横向排列头像和内容（默认就是row，这里再强调下） */
-  width: 100%; /* 每条评论占满宽度，避免并排 */
-  margin-bottom: -5px; /* 加大评论间距，避免拥挤 */
-}
-
-
-        .comment-avatar {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            background-color: #555;
-            margin-right: 10px;
-            flex-shrink: 0;
-        }
-
-        .comment-content {
-            flex-grow: 1;
-        }
-
-        .comment-user {
-  font-family: -apple-system, BlinkMacSystemFont, "San Francisco", "Helvetica Neue", Helvetica, Arial, sans-serif;
-            font-weight: bold;
-            font-size: 12px;
-            margin-bottom: 3px;
-        }
-
-        .comment-text-d {
-  font-family: -apple-system, BlinkMacSystemFont, "San Francisco", "Helvetica Neue", Helvetica, Arial, sans-serif;
-            font-size: 11px;
-            color: #ddd;
-            line-height: 1.3;
-        }
-
-        .comment-like {
-            font-size: 10px;
-            color: #999;
-            margin-top: 3px;
-            display: flex;
-            align-items: center;
-  font-family: -apple-system, BlinkMacSystemFont, "San Francisco", "Helvetica Neue", Helvetica, Arial, sans-serif;
-        }
-
-        .comment-like svg {
-            width: 12px;
-            height: 12px;
-            fill: #999;
-            margin-right: 3px;
-        }
-
-        /* Custom scrollbar for comments */
-        .comment-section::-webkit-scrollbar {
-            width: 4px;
-        }
-
-        .comment-section::-webkit-scrollbar-track {
-            background: transparent;
-        }
-
-        .comment-section::-webkit-scrollbar-thumb {
-            background: #555;
-            border-radius: 2px;
-        }
-
-
+        #phone-screen { width: var(--screen-width); height: var(--screen-height); background-color: #000; border-radius: 40px; position: relative; overflow: hidden; display: flex; flex-direction: column; }
         #status-bar { position: absolute; top: 0; left: 0; width: 100%; padding: 12px 20px; display: flex; justify-content: space-between; align-items: center; color: white; z-index: 10; font-size: 14px; box-sizing: border-box; pointer-events: none; }
         #status-bar-time { font-weight: 600;   font-family: -apple-system, BlinkMacSystemFont, "San Francisco", "Helvetica Neue", Helvetica, Arial, sans-serif;color: black;}
 
@@ -337,6 +98,86 @@ body {
             color: black; /* Will be visible on light notes app bg */
             margin-left: 2px;
         }
+
+
+    /* 灵动岛样式 */
+    .dynamic-island {
+        position: absolute; /* 绝对定位 */
+        top: 18px; /* 状态栏下方一些，但比状态栏本身高 */
+        left: 50%; /* 水平居中预备 */
+        transform: translateX(-50%); /* 水平居中实现 */
+        width: 100px; /* 初始宽度 */
+        height: 36px; /* 初始高度 */
+        background-color: #000; /* 背景黑色 */
+        border-radius: 25px; /* 圆角 */
+        z-index: 1003; /* 确保灵动岛在最顶层 (比状态栏高) */
+        transition: width 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55),
+                    height 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55),
+                    border-radius 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);  /* 尺寸和圆角过渡动画 */
+        cursor: pointer; /* 鼠标指针 */
+        display: flex; /* flex布局 */
+        align-items: center; /* 垂直居中 */
+        justify-content: center; /* 水平居中 */
+        overflow: hidden; /* 隐藏溢出内容 */
+        box-shadow: 0 5px 20px rgba(0,0,0,0.3); /* 灵动岛阴影，使其更突出 */
+    }
+
+    .dynamic-island-content { /* 灵动岛展开后内部内容 */
+        color: white; opacity: 0; /* 文字白色，初始透明 */
+        transition: opacity 0.3s ease-in-out 0.15s; /* 透明度过渡，延迟显示 */
+        width: 100%; height: 100%; pointer-events: none; /* 占满，初始不可点击 */
+        display: flex; flex-direction: column; justify-content: flex-start; /* flex布局，垂直排列，从顶部开始 */
+        padding: 10px 15px; /* 内边距 */
+        box-sizing: border-box; /* 确保padding不会影响整体布局 */
+    }
+
+    .music-player { display: flex; flex-direction: column; align-items: center; width: 100%; height: 100%; } /* 音乐播放器容器 */
+    .song-info { text-align: center; margin-top: 5px; margin-bottom: 0; width: 100%; } /* 歌曲信息 */
+    .song-title { font-family: -apple-system, BlinkMacSystemFont, "San Francisco", "Helvetica Neue", Helvetica, Arial, sans-serif;font-weight: 600; font-size: 14px; margin-bottom: 3px; } /* 歌名 */
+    .artist { font-family: -apple-system, BlinkMacSystemFont, "San Francisco", "Helvetica Neue", Helvetica, Arial, sans-serif;font-size: 12px; color: #b0b0b0; } /* 歌手 */
+    .progress-bar-container { /* 进度条容器 */
+        width: 90%; height: 7px; background-color: #404040; /* 尺寸、背景色 */
+        border-radius: 3.5px; margin: 5px 0; position: relative; cursor: pointer; /* 圆角、外边距、定位、鼠标指针 */
+    }
+    .progress { /* 实际进度条 */
+        width: 40%; height: 100%; background-color: #fff; /* 初始宽度、高度、背景色 */
+        border-radius: 3.5px; position: relative; transition: width 0.1s linear; /* 圆角、定位、宽度过渡 */
+    }
+    .progress::after { /* 进度条小圆点 */
+        content: ''; position: absolute; right: -5px; top: 50%; transform: translateY(-50%); /* 定位 */
+        width: 12px; height: 12px; background-color: white; border-radius: 50%; /* 尺寸、背景色、圆形 */
+        box-shadow: 0 0 4px rgba(0,0,0,0.3); /* 阴影 */
+    }
+    .controls { display: flex; justify-content: flex-end; align-items: center; width: 100%; margin-top: 10px; margin-bottom: 5px; } /* 控制按钮容器 */
+    .main-controls { display: flex; justify-content: center; align-items: center; gap: 15px; flex-grow: 1; } /* 主要控制按钮（播放/暂停） */
+    .side-controls { display: flex; justify-content: center; align-items: center; gap: 15px; flex-grow: 1; } /* 次要控制按钮 */
+    .control { /* 控制按钮通用样式 */
+        cursor: pointer; width: 24px; height: 24px; display: flex; justify-content: center; align-items: center; /* 鼠标指针、尺寸、flex居中 */
+        transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.5s ease; /* 过渡效果 */
+    }
+    .control:hover { transform: scale(1.15); opacity: 0.8; } /* 悬浮效果 */
+    .control:active { transform: scale(0.95); opacity: 0.6; } /* 点击效果 */
+    .heart-btn svg, .play-btn svg, .comment-btn svg, .rewind-btn svg, .forward-btn svg { width: 100%; height: 100%; fill: white; } /* SVG图标样式 */
+    .heart-btn.active svg { fill: #ffccd5; } /* 点赞后图标颜色 */
+    .rewind-btn svg, .forward-btn svg { opacity: 0.7; } /* 快进快退按钮图标透明度 */
+
+    .comment-section { width: 100%; max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; margin-top: 5px; } /* 评论区，初始隐藏 */
+    .comment-section.active { /* 评论区展开时 */
+        border-bottom-left-radius: 25px; border-bottom-right-radius: 25px; /* 底部圆角与灵动岛一致 */
+        max-height: 90px; overflow-y: auto; /* 最大高度，允许滚动 */
+    }
+    .comment { display: flex; margin-bottom: 12px; color: white; padding: 0 5px; } /* 单条评论 */
+    .comment-avatar { width: 30px; height: 30px; border-radius: 50%; background-color: #555; margin-right: 10px; flex-shrink: 0; } /* 评论者头像 */
+    .comment-content { flex-grow: 1; } /* 评论内容区域 */
+    .comment-user { font-family: -apple-system, BlinkMacSystemFont, "San Francisco", "Helvetica Neue", Helvetica, Arial, sans-serif;font-weight: bold; font-size: 12px; margin-bottom: 3px; } /* 评论者用户名 */
+    .comment-text-d { font-family: -apple-system, BlinkMacSystemFont, "San Francisco", "Helvetica Neue", Helvetica, Arial, sans-serif;font-size: 11px; color: #ddd; line-height: 1.3; } /* 评论文本 */
+    .comment-like { font-family: -apple-system, BlinkMacSystemFont, "San Francisco", "Helvetica Neue", Helvetica, Arial, sans-serif;font-size: 10px; color: #999; margin-top: 3px; display: flex; align-items: center; } /* 评论点赞 */
+    .comment-like svg { width: 12px; height: 12px; fill: #999; margin-right: 3px; } /* 点赞图标 */
+    .comment-section::-webkit-scrollbar { width: 4px; } /* 评论区滚动条宽度 */
+    .comment-section::-webkit-scrollbar-track { background: transparent; } /* 滚动条轨道透明 */
+    .comment-section::-webkit-scrollbar-thumb { background: #555; border-radius: 2px; } /* 滚动条滑块颜色和圆角 */
+
+
         @keyframes charge-breath { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } }
         .screen { width: 100%; height: 100%; position: absolute; top: 0; left: 0; display: flex; flex-direction: column; overflow: hidden; opacity: 0; visibility: hidden; transition: opacity 0.3s, visibility 0.3s; }
         .screen.active { opacity: 1; visibility: visible; z-index: 1; }
@@ -353,8 +194,8 @@ body {
         .header .save-btn { font-size: 16px; color: var(--accent-color); font-weight: 600; cursor: pointer; }
         #home-screen { display: flex; flex-direction: column; justify-content: flex-start; align-items: center; padding: 20px; padding-top: 80px; padding-bottom: 50px; box-sizing: border-box; background-size: cover; background-position: center; }
         #clock-container { text-align: center; color: white; text-shadow: 0 3px 8px rgba(0,0,0,0.4); margin-bottom: 20px; flex-shrink: 0; }
-        #main-time {   font-family: -apple-system, BlinkMacSystemFont, "San Francisco", "Helvetica Neue", Helvetica, Arial, sans-serif;font-size: 80px; font-weight: 200; }
-        #main-date {   font-family: -apple-system, BlinkMacSystemFont, "San Francisco", "Helvetica Neue", Helvetica, Arial, sans-serif;font-size: 18px; font-weight: 500; }
+        #main-time { font-size: 80px; font-weight: 200; }
+        #main-date { font-size: 18px; font-weight: 500; }
         #app-grid { margin-top: auto; display: flex; flex-direction: column; align-items: center; gap: 20px; width: 100%; padding: 20px; }
         .app-row { display: flex; justify-content: center; gap: 25px; width: 100%; }
         .app-icon { display: flex; flex-direction: column; align-items: center; cursor: pointer; color: white; text-shadow: 0 1px 3px rgba(0,0,0,0.5); font-size: 14px; font-weight: 500; text-align: center; }
@@ -780,6 +621,8 @@ body {
         #battery-alert-modal.visible .battery-alert-content { transform: scale(1); }
         #battery-alert-image { max-width: 100px; max-height: 100px; margin-bottom: 15px; }
         #battery-alert-text { font-size: 16px; font-weight: 500; color: #333; margin: 0; line-height: 1.4; }
+
+
 
 /* === 头像框选择模态框样式 (这是新添加的) === */
 .change-frame-btn {
@@ -1548,14 +1391,14 @@ body {
 }
 
 /* 评论区容器 */
-.comment-section {
+.comment-input-section {
     flex-grow: 1; /* 占据大部分空间 */
     display: flex;
     align-items: center;
     gap: 8px;
 }
 
-.comment-section .comment-avatar {
+.comment-input-section .comment-avatar {
     width: 28px;
     height: 28px;
     border-radius: 50%;
@@ -1563,7 +1406,7 @@ body {
     flex-shrink: 0;
 }
 
-.comment-section .comment-input {
+.comment-input-section .comment-input {
     width: 100%;
     padding: 8px 12px;
     border: none;
@@ -2644,8 +2487,9 @@ body {
 #font-settings-screen,
 #wallpaper-screen,
 #memories-view,
-#contact-picker-screen,      /* <-- 新增这行 */
-#member-management-screen {  /* <-- 新增这行 */
+#contact-picker-screen,
+#member-management-screen,
+#world-book-editor-screen {  
     background-color: var(--secondary-bg);
 }
 
@@ -2880,7 +2724,7 @@ background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/200
 .control-btn.join-btn {
     background-color: #007bff;
     background-size: 50%;
-    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><line x1="20" y1="8" x2="20" y2="14"></line><line x1="17" y1="11" x2="23" y2="11"></line></svg>');
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="white" class="size-6"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 3.75 18 6m0 0 2.25 2.25M18 6l2.25-2.25M18 6l-2.25 2.25m1.5 13.5c-8.284 0-15-6.716-15-15V4.5A2.25 2.25 0 0 1 4.5 2.25h1.372c.516 0 .966.351 1.091.852l1.106 4.423c.11.44-.054.902-.417 1.173l-1.293.97a1.062 1.062 0 0 0-.38 1.21 12.035 12.035 0 0 0 7.143 7.143c.441.162.928-.004 1.21-.38l.97-1.293a1.125 1.125 0 0 1 1.173-.417l4.423 1.106c.5.125.852.575.852 1.091V19.5a2.25 2.25 0 0 1-2.25 2.25h-2.25Z" /></svg>');
 }
 
 /* ▲▲▲ 新CSS替换结束 ▲▲▲ */
@@ -3066,7 +2910,7 @@ background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/200
     overflow: hidden;
     text-overflow: ellipsis;
     max-width: 100%;
-margin-top: 22px;
+margin-top: 8px;
 }
 
 /* 3. 状态栏容器 */
@@ -3145,17 +2989,18 @@ margin-top: 22px;
 
 /* === 【全新】约定/倒计时卡片样式 === */
 .countdown-card {
-    background: linear-gradient(135deg, #ffddee, #d1eaff); /* 淡粉(#ffddee)到淡蓝(#d1eaff)渐变 */
+    background: linear-gradient(135deg, #667eea, #764ba2);
     color: white;
     border-radius: 12px;
     padding: 20px;
-    box-shadow: 0 4px 15px rgba(255, 220, 238, 0.4); /* 匹配淡粉色的半透明阴影 */
+    box-shadow: 0 4px 15px rgba(118, 75, 162, 0.4);
     text-align: center;
     position: relative;
     overflow: hidden;
     flex-shrink: 0;
 }
 .countdown-card::before {
+    content: '✨';
     position: absolute;
     top: -10px;
     left: -10px;
@@ -3167,22 +3012,20 @@ margin-top: 22px;
     font-size: 18px;
     font-weight: 600;
     margin-bottom: 15px;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); /* 标题阴影 */
 }
 .countdown-card .timer {
-    font-size: 15px;
-    font-weight: 600;
+    font-size: 28px;
+    font-weight: 300;
     letter-spacing: 2px;
     margin-bottom: 15px;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); /* 标题阴影 */
 }
 .countdown-card .target-date {
     font-size: 12px;
     opacity: 0.8;
     border-top: 1px solid rgba(255,255,255,0.2);
     padding-top: 10px;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3); /* 目标日期阴影（更淡） */
 }
+
 /* === 【全新】聊天锁定遮罩层样式 === */
 #chat-lock-overlay {
     position: absolute;
@@ -3515,53 +3358,211 @@ margin-top: 22px;
 
 .message-wrapper.animate-in {
   animation: message-pop-in 0.3s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+  }
+
+/* ▼▼▼ 【全新】App图标设置样式 ▼▼▼ */
+#icon-settings-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+    gap: 20px;
+    width: 100%;
+    padding: 0 10px;
+    box-sizing: border-box;
 }
 
+.icon-setting-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.icon-preview {
+    width: 60px;
+    height: 60px;
+    border-radius: 15px;
+    background-size: cover;
+    background-position: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.change-icon-btn {
+    padding: 4px 10px;
+    font-size: 12px;
+    border: 1px solid #ccc;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+    cursor: pointer;
+}
+/* ▲▲▲ 新CSS粘贴结束 ▲▲▲ */
+
+/* ▼▼▼ 【全新】外观设置页面布局修正 ▼▼▼ */
+
+/* 1. 修正滚动问题 */
+#wallpaper-screen .form-container {
+    /* 核心修正1: 解决flex布局下的滚动冲突，让滚动条能正常出现 */
+    min-height: 0; 
+}
+
+/* 2. 修正壁纸预览被压扁的问题 */
+#wallpaper-preview {
+    /* 核心修正2: 防止预览框被过多的内容挤压变形，让它保持自己的高度 */
+    flex-shrink: 0; 
+}
+/* ▲▲▲ 修正结束 ▲▲▲ */
+
+/* ▼▼▼ 【全新】分享链接功能样式 (无图版) ▼▼▼ */
+
+/* 1. 浏览器界面背景色和内容区样式 (保持不变) */
+#browser-screen {
+    background-color: #f8f9fa;
+}
+#browser-content {
+    padding: 20px;
+    font-size: 16px;
+    line-height: 1.8;
+    color: #333;
+    overflow-y: auto;
+    background-color: #f8f9fa;
+}
+#browser-content .article-title {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+#browser-content .article-meta {
+    font-size: 13px;
+    color: #8a8a8a;
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #e0e0e0;
+}
+#browser-content .article-body {
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+#browser-content .article-body p {
+    margin-bottom: 1em;
+}
+
+/* 2. 聊天气泡中的链接卡片样式 (无图版) */
+.message-bubble.is-link-share .content {
+    padding: 0;
+    background: transparent;
+    box-shadow: none;
+    border: none;
+}
+
+.link-share-card {
+    width: 200px; /* 稍微缩小 */
+    background-color: #f5f9ff; /* 更浅的蓝白色 */
+    border-radius: 4px; /* MUJI风格的小圆角 */
+    padding: 10px 12px; /* 上下边距缩小 */
+    cursor: pointer;
+    transition: background-color 0.15s linear; /* 更干脆的动画 */
+    display: flex;
+    flex-direction: column;
+    gap: 6px; /* 缩小间距 */
+    border: 1px solid #e1e8f0; /* 更细的边框 */
+}
+
+.link-share-card:hover {
+    background-color: #ebf2ff; /* 保持浅色但更明显的hover */
+}
+
+.link-share-card .title {
+    font-weight: 400; /* 常规字体粗细 */
+    font-size: 13px; /* 更小字号 */
+    line-height: 1.4;
+    color: #2c3e50; /* 深蓝灰色 */
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.link-share-card .description {
+    font-size: 11px;
+    color: #7f8c9a; /* 中灰色 */
+    line-height: 1.5;
+    -webkit-line-clamp: 3;
+    display: -webkit-box;
+    overflow: hidden;
+    font-weight: 300; /* 更细字体 */
+}
+
+.link-share-card .footer {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 10px; /* 更小的页脚 */
+    color: #95a5a6; /* 浅灰色 */
+    margin-top: 3px;
+    padding-top: 5px;
+    background-color: #f0f5fc; /* 替代下划线的浅底色 */
+    padding: 4px 0 2px; /* 上下内边距 */
+    margin: 0 -12px -10px; /* 负边距拉到底部 */
+    padding-left: 12px; /* 恢复左侧内边距 */
+    border-radius: 0 0 4px 4px; /* 底部圆角匹配卡片 */
+}
+
+.link-share-card .footer-icon {
+    width: 10px; /* 更小的图标 */
+    height: 10px;
+    opacity: 0.6; /* 更低调的图标 */
+}
+
+/* ▲▲▲ 新CSS粘贴结束 ▲▲▲ */
 
     </style>
 </head>
 <body>
-    <div id="phone-screen">
+    <div class="phone-case">
+            <!-- 灵动岛 -->
             <div class="dynamic-island">
                 <div class="dynamic-island-content">
+                    <!-- 音乐播放器 -->
                     <div class="music-player">
+
                         <div class="song-info">
-                            <div class="song-title">Moonlight Sonata</div>
-                            <div class="artist">Beethoven</div>
+                            <div class="song-title" id="island-song-title">Moonlight Sonata</div>
+                            <div class="artist" id="island-song-artist">Beethoven</div>
                         </div>
+
                         <div class="progress-bar-container">
                             <div class="progress"></div>
                         </div>
-<div class="controls">
-    <div class="side-controls">
-        <div class="control heart-btn">
-            <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
-        </div>
-        <div class="control rewind-btn">
-            <svg viewBox="0 0 24 24"><path d="M11 16.07V7.93c0-.81-.91-1.28-1.58-.82l-4.77 3.53c-.61.46-.61 1.3 0 1.76l4.77 3.53c.67.47 1.58 0 1.58-.82zm1.66-3.25l4.77 3.53c.66.47 1.58-.01 1.58-.82V7.93c0-.81-.91-1.28-1.58-.82l-4.77 3.53c-.61.45-.61 1.29 0 1.76z"/></svg>
-        </div>
-    </div>
-    <div class="main-controls">
-        <div class="control play-btn">
-            <svg class="play-icon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-            <svg class="pause-icon" viewBox="0 0 24 24" style="display: none;"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
-        </div>
-    </div>
-    <div class="side-controls">
-        <div class="control forward-btn">
-            <svg viewBox="0 0 24 24"><path d="M5.58 16.89l4.77-3.53c.61-.45.61-1.3 0-1.76L5.58 7.93c-.66-.47-1.58.01-1.58.82v7.24c0 .81.91 1.29 1.58.82zm8 0l4.77-3.53c.61-.45.61-1.3 0-1.76l-4.77-3.53c-.66-.47-1.58.01-1.58.82v7.24c0 .81.91 1.29 1.58.82z"/></svg>
-        </div>
-        <div class="control comment-btn">
-            <svg viewBox="0 0 24 24"><path d="M21.99 4c0-1.1-.89-2-1.99-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14l4 4-.01-18z"/></svg>
-        </div>
-    </div>
-</div>                        
+                        <div class="controls">
+                            <div class="side-controls">
+                                <div class="control heart-btn">
+                                    <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                                </div>
+                                <div class="control rewind-btn">
+                                    <svg viewBox="0 0 24 24"><path d="M11 16.07V7.93c0-.81-.91-1.28-1.58-.82l-4.77 3.53c-.61.46-.61 1.3 0 1.76l4.77 3.53c.67.47 1.58 0 1.58-.82zm1.66-3.25l4.77 3.53c.66.47 1.58-.01 1.58-.82V7.93c0-.81-.91-1.28-1.58-.82l-4.77 3.53c-.61.45-.61 1.29 0 1.76z"/></svg>
+                                </div>
+                            </div>
+                            <div class="main-controls">
+                                <div class="control play-btn">
+                                    <svg class="play-icon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                                    <svg class="pause-icon" viewBox="0 0 24 24" style="display: none;"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+                                </div>
+                            </div>
+                            <div class="side-controls">
+                                <div class="control forward-btn">
+                                    <svg viewBox="0 0 24 24"><path d="M5.58 16.89l4.77-3.53c.61-.45.61-1.3 0-1.76L5.58 7.93c-.66-.47-1.58.01-1.58.82v7.24c0 .81.91 1.29 1.58.82zm8 0l4.77-3.53c.61-.45.61-1.3 0-1.76l-4.77-3.53c-.66-.47-1.58.01-1.58.82v7.24c0 .81.91 1.29 1.58.82z"/></svg>
+                                </div>
+                                <div class="control comment-btn">
+                                    <svg viewBox="0 0 24 24"><path d="M21.99 4c0-1.1-.89-2-1.99-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14l4 4-.01-18z"/></svg>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 灵动岛内的评论区 -->
                         <div class="comment-section">
                             <div class="comment">
-                                <div class="comment-avatar"></div>
+                                <div class="comment-avatar" style="background-image: url('https://source.unsplash.com/random/50x50/?avatar,person1');"></div>
                                 <div class="comment-content">
                                     <div class="comment-user">MusicLover123</div>
-                                    <div class="comment-text-d">This piece always calms me down after a long day.</div>
+                                    <div class="comment-text-d">This piece always calms me down after a long day. Such a classic!</div>
                                     <div class="comment-like">
                                         <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
                                         245
@@ -3569,24 +3570,13 @@ margin-top: 22px;
                                 </div>
                             </div>
                             <div class="comment">
-                                <div class="comment-avatar"></div>
+                                <div class="comment-avatar" style="background-image: url('https://source.unsplash.com/random/50x50/?avatar,person2');"></div>
                                 <div class="comment-content">
                                     <div class="comment-user">ClassicalFan</div>
-                                    <div class="comment-text-d">Beethoven was truly ahead of his time with this composition.</div>
+                                    <div class="comment-text-d">Beethoven was truly ahead of his time with this composition. Pure genius.</div>
                                     <div class="comment-like">
                                         <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
                                         189
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="comment">
-                                <div class="comment-avatar"></div>
-                                <div class="comment-content">
-                                    <div class="comment-user">PianoStudent</div>
-                                    <div class="comment-text-d">Trying to learn this piece - any tips for the third movement?</div>
-                                    <div class="comment-like">
-                                        <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
-                                        76
                                     </div>
                                 </div>
                             </div>
@@ -3594,6 +3584,7 @@ margin-top: 22px;
                     </div>
                 </div>
             </div>
+
         <div id="phone-screen">
             <div id="status-bar">
                 <span id="status-bar-time">12:00</span>
@@ -3614,24 +3605,52 @@ margin-top: 22px;
             
             <div id="home-screen" class="screen active">
                 <div id="clock-container"><div id="main-time">12:00</div><div id="main-date">星期一, 1月1日</div></div>
-                                                <div id="app-grid">
-                    <!-- 第一行：放2个图标 -->
-                    <div class="app-row">
-                        <div class="app-icon" onclick="showScreen('world-book-screen')"><div class="icon-bg"><img src="https://i.postimg.cc/mZ0vV6tT/IMG-6907.jpg" alt="世界书"></div><span class="label">世界书</span></div>
-                        <div class="app-icon" onclick="showScreen('chat-list-screen')"><div class="icon-bg"><img src="https://i.postimg.cc/gJ7Dz5fj/IMG-6906.jpg" alt="QQ"></div><span class="label">QQ</span></div>
-          </div>
-                    <!-- 第二行：放3个图标 -->
-                    <div class="app-row">
-                        <div class="app-icon" onclick="showScreen('api-settings-screen')"><div class="icon-bg"><img src="https://i.postimg.cc/RhnTNdBR/IMG-6908.jpg" alt="API设置"></div><span class="label">API设置</span></div>
-                        <div class="app-icon" onclick="showScreen('wallpaper-screen')"><div class="icon-bg"><img src="https://i.postimg.cc/WbgQy6kg/IMG-6909.jpg" alt="壁纸"></div><span class="label">壁纸</span></div>
-                        <div class="app-icon" onclick="showScreen('font-settings-screen')">
-                            <div class="icon-bg"><img src="https://files.catbox.moe/j1kn1a.jpeg" alt="字体"></div>
-                            <span class="label">字体</span>
-                        </div>
-                    </div>                     </div>
+                                                <!-- ▼▼▼ 用这整块代码替换你原来的 id="app-grid" ▼▼▼ -->
+<div id="app-grid">
+    <!-- 第一行：放2个图标 -->
+    <div class="app-row">
+        <div class="app-icon" onclick="showScreen('world-book-screen')">
+            <div class="icon-bg">
+                <!-- 【核心修改1】添加ID -->
+                <img id="icon-img-world-book" src="https://i.postimg.cc/mZ0vV6tT/IMG-6907.jpg" alt="世界书">
             </div>
-
-
+            <span class="label">世界书</span>
+        </div>
+        <div class="app-icon" onclick="showScreen('chat-list-screen')">
+            <div class="icon-bg">
+                <!-- 【核心修改2】添加ID -->
+                <img id="icon-img-qq" src="https://i.postimg.cc/gJ7Dz5fj/IMG-6906.jpg" alt="QQ">
+            </div>
+            <span class="label">QQ</span>
+        </div>
+    </div>
+    <!-- 第二行：放3个图标 -->
+    <div class="app-row">
+        <div class="app-icon" onclick="showScreen('api-settings-screen')">
+            <div class="icon-bg">
+                <!-- 【核心修改3】添加ID -->
+                <img id="icon-img-api-settings" src="https://i.postimg.cc/RhnTNdBR/IMG-6908.jpg" alt="API设置">
+            </div>
+            <span class="label">API设置</span>
+        </div>
+        <div class="app-icon" onclick="showScreen('wallpaper-screen')">
+            <div class="icon-bg">
+                <!-- 【核心修改4】添加ID -->
+                <img id="icon-img-wallpaper" src="https://i.postimg.cc/WbgQy6kg/IMG-6909.jpg" alt="外观设置">
+            </div>
+            <span class="label">外观设置</span>
+        </div>
+        <div class="app-icon" onclick="showScreen('font-settings-screen')">
+            <div class="icon-bg">
+                <!-- 【核心修改5】添加ID -->
+                <img id="icon-img-font" src="https://files.catbox.moe/j1kn1a.jpeg" alt="字体">
+            </div>
+            <span class="label">字体</span>
+        </div>
+    </div>
+</div>
+<!-- ▲▲▲ 替换结束 ▲▲▲ -->
+            </div>
           
             <div id="world-book-screen" class="screen"><div class="header"><span class="back-btn" onclick="showScreen('home-screen')">‹</span><span>世界书</span><span class="action-btn" id="add-world-book-btn">+</span></div><div id="world-book-list"></div></div>
             <div id="world-book-editor-screen" class="screen">
@@ -3709,7 +3728,7 @@ margin-top: 22px;
     <div class="header" id="main-chat-list-header">
         <span class="back-btn" onclick="showScreen('home-screen')">‹</span>
         <span>消息</span>
-<div class="header-actions">
+        <div class="header-actions">
     <span class="action-btn" id="add-group-chat-btn" title="创建群聊">
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill=var(--accent-color) viewBox="0 0 256 256">
             <path d="M228.25,63.07l-4.66-2.69a23.6,23.6,0,0,0,0-8.76l4.66-2.69a8,8,0,0,0-8-13.86l-4.67,2.7A23.92,23.92,0,0,0,208,33.38V28a8,8,0,0,0-16,0v5.38a23.92,23.92,0,0,0-7.58,4.39l-4.67-2.7a8,8,0,1,0-8,13.86l4.66,2.69a23.6,23.6,0,0,0,0,8.76l-4.66,2.69a8,8,0,0,0,4,14.93,7.92,7.92,0,0,0,4-1.07l4.67-2.7A23.92,23.92,0,0,0,192,78.62V84a8,8,0,0,0,16,0V78.62a23.92,23.92,0,0,0,7.58-4.39l4.67,2.7a7.92,7.92,0,0,0,4,1.07,8,8,0,0,0,4-14.93ZM192,56a8,8,0,1,1,8,8A8,8,0,0,1,192,56Zm29.35,48.11a8,8,0,0,0-6.57,9.21A88.85,88.85,0,0,1,216,128a87.62,87.62,0,0,1-22.24,58.41,79.66,79.66,0,0,0-36.06-28.75,48,48,0,1,0-59.4,0,79.66,79.66,0,0,0-36.06,28.75A88,88,0,0,1,128,40a88.76,88.76,0,0,1,14.68,1.22,8,8,0,0,0,2.64-15.78,103.92,103.92,0,1,0,85.24,85.24A8,8,0,0,0,221.35,104.11ZM96,120a32,32,0,1,1,32,32A32,32,0,0,1,96,120ZM74.08,197.5a64,64,0,0,1,107.84,0,87.83,87.83,0,0,1-107.84,0Z"></path>
@@ -3908,7 +3927,6 @@ margin-top: 22px;
 </span>
             </div>
         </div>
-
         <!-- 多选模式控件 (保持不变) -->
         <div class="selection-controls">
             <span id="selection-cancel-btn">取消</span>
@@ -3979,6 +3997,9 @@ margin-top: 22px;
   </svg>
 </button>
 <!-- ▲▲▲ 替换结束 ▲▲▲ -->
+<!-- ▼▼▼ 在 id="chat-input-actions-top" 的末尾，【添加】这个新的按钮 ▼▼▼ -->
+<button id="share-link-btn" class="chat-action-icon-btn action-button" title="分享链接"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#4a586e" viewBox="0 0 256 256"><path d="M247.39,68.94A8,8,0,0,0,240,64H209.57A48.66,48.66,0,0,0,168.1,40a46.91,46.91,0,0,0-33.75,13.7A47.9,47.9,0,0,0,120,88v6.09C79.74,83.47,46.81,50.72,46.46,50.37a8,8,0,0,0-13.65,4.92c-4.31,47.79,9.57,79.77,22,98.18a110.93,110.93,0,0,0,21.88,24.2c-15.23,17.53-39.21,26.74-39.47,26.84a8,8,0,0,0-3.85,11.93c.75,1.12,3.75,5.05,11.08,8.72C53.51,229.7,65.48,232,80,232c70.67,0,129.72-54.42,135.75-124.44l29.91-29.9A8,8,0,0,0,247.39,68.94Zm-45,29.41a8,8,0,0,0-2.32,5.14C196,166.58,143.28,216,80,216c-10.56,0-18-1.4-23.22-3.08,11.51-6.25,27.56-17,37.88-32.48A8,8,0,0,0,92,169.08c-.47-.27-43.91-26.34-44-96,16,13,45.25,33.17,78.67,38.79A8,8,0,0,0,136,104V88a32,32,0,0,1,9.6-22.92A30.94,30.94,0,0,1,167.9,56c12.66.16,24.49,7.88,29.44,19.21A8,8,0,0,0,204.67,80h16Z"></path></svg></button>
+<!-- ▲▲▲ 新增HTML结束 ▲▲▲ -->
         </div>
         <div id="chat-input-main-row">
             <textarea id="chat-input" rows="1" placeholder="输入消息..."></textarea>
@@ -4053,7 +4074,47 @@ margin-top: 22px;
 </div>
 <!-- ▲▲▲ 替换结束 ▲▲▲ -->
 
-            <div id="wallpaper-screen" class="screen"><div class="header"><span class="back-btn" onclick="showScreen('home-screen')">‹</span><span>壁纸设置</span><span style="width: 30px;"></span></div><div class="form-container"><div id="wallpaper-preview">点击下方上传</div><button class="form-button" onclick="document.getElementById('wallpaper-upload-input').click();">上传壁纸</button><input type="file" id="wallpaper-upload-input" accept="image/*"><button class="form-button" id="save-wallpaper-btn">保存并应用</button></div></div>
+<!-- ▼▼▼ 用这整块代码替换你原来的 id="wallpaper-screen" ▼▼▼ -->
+<div id="wallpaper-screen" class="screen">
+    <div class="header">
+        <span class="back-btn" onclick="showScreen('home-screen')">‹</span>
+        <!-- 【核心修改1】标题改为“外观设置”，更通用 -->
+        <span>外观设置</span>
+        <span style="width: 30px;"></span>
+    </div>
+    <div class="form-container">
+        <!-- 壁纸设置部分保持不变 -->
+        <div id="wallpaper-preview">点击下方上传</div>
+        <button class="form-button" onclick="document.getElementById('wallpaper-upload-input').click();">上传壁纸</button>
+        <input type="file" id="wallpaper-upload-input" accept="image/*">
+        
+        <!-- 【核心修改2】新增图标设置区域 -->
+        <hr style="width: 80%; opacity: 0.3; margin: 30px 0;">
+        <div style="width:100%; text-align: left; margin-bottom: 15px;">
+            <label style="font-weight: 500; color: var(--text-secondary);">App 图标设置</label>
+        </div>
+        <div id="icon-settings-grid">
+            <!-- 图标设置项将由JS动态生成在这里 -->
+        </div>
+        
+        <!-- 【核心修改3】按钮文字也改一下 -->
+        <button class="form-button" id="save-wallpaper-btn" style="margin-top: 30px;">保存所有外观设置</button>
+    </div>
+</div>
+<!-- ▲▲▲ 替换结束 ▲▲▲ -->
+
+<!-- ▼▼▼ 【全新】分享链接功能 HTML ▼▼▼ -->
+<div id="browser-screen" class="screen">
+    <div class="header">
+        <span class="back-btn" id="browser-back-btn">‹</span>
+        <span id="browser-title"></span>
+        <span style="width: 30px;"></span>
+    </div>
+    <div id="browser-content" class="list-container">
+        <!-- 文章内容将由JS动态生成在这里 -->
+    </div>
+</div>
+<!-- ▲▲▲ 新HTML粘贴结束 ▲▲▲ -->
 
 <div id="font-settings-screen" class="screen">
     <div class="header">
@@ -4659,174 +4720,278 @@ margin-top: 22px;
 
 <!-- ▲▲▲ 新HTML粘贴结束 ▲▲▲ -->
 
+<!-- ▼▼▼ 【全新】用户分享链接模态框 ▼▼▼ -->
+<div id="share-link-modal" class="modal">
+    <div class="modal-content" style="width: 300px; height: auto;">
+        <div class="modal-header">
+            <span>分享链接</span>
+        </div>
+        <div class="modal-body">
+            <div class="form-group">
+                <label for="link-title-input">标题</label>
+                <input type="text" id="link-title-input" placeholder="输入文章或链接的标题">
+            </div>
+            <div class="form-group">
+                <label for="link-description-input">摘要 (可选)</label>
+                <textarea id="link-description-input" rows="2" placeholder="简单描述一下链接内容"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="link-source-input">来源名称 (可选)</label>
+                <input type="text" id="link-source-input" placeholder="例如：知乎日报、B站">
+            </div>
+            <div class="form-group">
+                <label for="link-content-input">完整内容 (可选，用于浏览器内显示)</label>
+                <textarea id="link-content-input" rows="4" placeholder="粘贴或输入完整的文章内容"></textarea>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="cancel" id="cancel-share-link-btn">取消</button>
+            <button class="save" id="confirm-share-link-btn">分享</button>
+        </div>
+    </div>
+</div>
+<!-- ▲▲▲ 新HTML粘贴结束 ▲▲▲ -->
+
 <script>
     document.addEventListener('DOMContentLoaded', () => {
-const dynamicIsland = document.querySelector('.dynamic-island');
-const progressBar = document.querySelector('.progress');
-const progressContainer = document.querySelector('.progress-bar-container');
-const playBtn = document.querySelector('.play-btn');
-const playIcon = document.querySelector('.play-icon');
-const pauseIcon = document.querySelector('.pause-icon');
-const heartBtn = document.querySelector('.heart-btn');
-const commentBtn = document.querySelector('.comment-btn');
-const commentSection = document.querySelector('.comment-section');
-const rewindBtn = document.querySelector('.rewind-btn');
-const forwardBtn = document.querySelector('.forward-btn');
+    /* Dynamic Island Variables */
+    const dynamicIsland = document.querySelector('.dynamic-island');
+    const dynamicIslandContent = document.querySelector('.dynamic-island-content');
 
-let dynamicIslandState = 'small'; // 'small', 'medium', 'large'
+    let dynamicIslandState = 'small'; /* 'small', 'medium', 'large' */
+    let isIslandPlaying = false;
+    let islandProgressInterval;
+    let islandProgressValue = 40;
 
-let isPlaying = false;
-let progressInterval;
-let progressValue = 0; // 重命名以避免与.progress元素冲突
+    /* Dynamic Island UI Update */
+    function updateDynamicIslandUI() {
+        if (!dynamicIsland || !dynamicIslandContent) return;
 
-function updateDynamicIslandUI() {
-    switch (dynamicIslandState) {
-        case 'small':
-            dynamicIsland.style.width = '100px';
-            dynamicIsland.style.height = '36px';
-            dynamicIsland.style.borderRadius = '25px';
-            document.querySelector('.dynamic-island-content').style.opacity = '0';
-            commentSection.classList.remove('active');
-            break;
-        case 'medium':
-            dynamicIsland.style.width = '240px';
-            dynamicIsland.style.height = '135px'; 
-            dynamicIsland.style.borderRadius = '35px';
-            document.querySelector('.dynamic-island-content').style.opacity = '1';
-            commentSection.classList.remove('active'); 
-            break;
-        case 'large':
-            dynamicIsland.style.width = '240px';
-            dynamicIsland.style.height = '220px'; 
-            dynamicIsland.style.borderRadius = '35px';
-            document.querySelector('.dynamic-island-content').style.opacity = '1';
-            commentSection.classList.add('active'); 
-            break;
-    }
-}
-
-dynamicIsland.addEventListener('click', function(e) {
-    const clickedOnControl = e.target.closest('.control, .progress-bar-container');
-
-    if (dynamicIslandState === 'small') {
-        dynamicIslandState = 'medium';
-        updateDynamicIslandUI();
-    } else if (dynamicIslandState === 'medium' && !clickedOnControl) {
-        // 补充中型状态点击（非控制区域）变回小型的逻辑
-        dynamicIslandState = 'small';
-        updateDynamicIslandUI();
-    } else if (dynamicIslandState === 'large' && !clickedOnControl) {
-        dynamicIslandState = 'medium';
-        updateDynamicIslandUI();
-    }
-});
-
-document.addEventListener('click', function(e) {
-    // 去掉notesApp相关判断
-    if (!dynamicIsland.contains(e.target) && dynamicIslandState !== 'small') {
-        dynamicIslandState = 'small';
-        updateDynamicIslandUI();
-    }
-});
-
-playBtn.addEventListener('click', function(e) { 
-    e.stopPropagation(); 
-    isPlaying = !isPlaying;
-
-    if (isPlaying) {
-        playIcon.style.display = 'none';
-        pauseIcon.style.display = 'block';
-        startProgress();
-    } else {
-        playIcon.style.display = 'block';
-        pauseIcon.style.display = 'none';
-        stopProgress();
-    }
-});
-
-heartBtn.addEventListener('click', function(e) { 
-    e.stopPropagation(); 
-    heartBtn.classList.toggle('active');
-});
-
-commentBtn.addEventListener('click', function(e) { 
-    e.stopPropagation(); 
-     if (dynamicIslandState === 'medium') {
-         dynamicIslandState = 'large';
-     } else if (dynamicIslandState === 'large') {
-         dynamicIslandState = 'medium';
-     }
-     updateDynamicIslandUI();
-});
-
-rewindBtn.addEventListener('click', function(e) { 
-    e.stopPropagation(); 
-    if (!isPlaying) return;
-    progressValue = Math.max(0, progressValue - 5);
-    progressBar.style.width = progressValue + '%';
-});
-
-forwardBtn.addEventListener('click', function(e) { 
-    e.stopPropagation(); 
-    if (!isPlaying) return;
-    progressValue = Math.min(100, progressValue + 5);
-    progressBar.style.width = progressValue + '%';
-});
-
-progressContainer.addEventListener('click', function(e) { 
-    e.stopPropagation(); 
-    if (!isPlaying) return;
-
-    const rect = this.getBoundingClientRect();
-    const clickPosition = e.clientX - rect.left;
-    const percentage = (clickPosition / rect.width) * 100;
-
-    progressValue = Math.min(100, Math.max(0, percentage));
-    progressBar.style.width = progressValue + '%';
-});
-
-let isDragging = false;
-progressBar.addEventListener('mousedown', function(e) { 
-     e.stopPropagation(); 
-    if (!isPlaying) return;
-    isDragging = true;
-});
-
-document.addEventListener('mousemove', function(e) {
-    if (!isDragging || !isPlaying) return;
-
-    const rect = progressContainer.getBoundingClientRect();
-    const clickPosition = e.clientX - rect.left;
-    const percentage = (clickPosition / rect.width) * 100;
-
-    progressValue = Math.min(100, Math.max(0, percentage));
-    progressBar.style.width = progressValue + '%';
-});
-
-document.addEventListener('mouseup', function() {
-    isDragging = false;
-});
-
-
-function startProgress() {
-    stopProgress();
-    progressInterval = setInterval(function() {
-        progressValue += 0.5; 
-        if (progressValue > 100) {
-            progressValue = 0; 
+        switch (dynamicIslandState) {
+            case 'small':
+                dynamicIsland.style.width = '100px';
+                dynamicIsland.style.height = '36px';
+                dynamicIsland.style.borderRadius = '25px';
+                dynamicIslandContent.style.opacity = '0';
+                dynamicIslandContent.style.pointerEvents = 'none';
+                const islandCommentSectionSmall = dynamicIslandContent.querySelector('.comment-section');
+                if (islandCommentSectionSmall) islandCommentSectionSmall.classList.remove('active');
+                break;
+            case 'medium':
+                dynamicIsland.style.width = '240px';
+                dynamicIsland.style.height = '135px';
+                dynamicIsland.style.borderRadius = '35px';
+                dynamicIslandContent.style.opacity = '1';
+                dynamicIslandContent.style.pointerEvents = 'auto';
+                const islandCommentSectionMedium = dynamicIslandContent.querySelector('.comment-section');
+                if (islandCommentSectionMedium) islandCommentSectionMedium.classList.remove('active');
+                break;
+            case 'large':
+                dynamicIsland.style.width = '260px';
+                dynamicIsland.style.height = '200px';
+                dynamicIsland.style.borderRadius = '35px';
+                dynamicIslandContent.style.opacity = '1';
+                dynamicIslandContent.style.pointerEvents = 'auto';
+                const islandCommentSectionLarge = dynamicIslandContent.querySelector('.comment-section');
+                if (islandCommentSectionLarge) islandCommentSectionLarge.classList.add('active');
+                break;
         }
-        progressBar.style.width = progressValue + '%';
-    }, 100); 
-}
+    }
 
-function stopProgress() {
-    clearInterval(progressInterval);
-}
+    /* Dynamic Island Music Player */
+    function bindDynamicIslandMusicControls() {
+        const currentPlayBtn = dynamicIslandContent.querySelector('.play-btn');
+        const currentHeartBtn = dynamicIslandContent.querySelector('.heart-btn');
+        const currentCommentBtn = dynamicIslandContent.querySelector('.comment-btn');
+        const currentRewindBtn = dynamicIslandContent.querySelector('.rewind-btn');
+        const currentForwardBtn = dynamicIslandContent.querySelector('.forward-btn');
+        const currentProgressContainer = dynamicIslandContent.querySelector('.progress-bar-container');
 
-setTimeout(function() {
-    dynamicIslandState = 'medium'; 
+        if (currentPlayBtn) {
+            currentPlayBtn.onclick = function(e) {
+                e.stopPropagation();
+                isIslandPlaying = !isIslandPlaying;
+                const playIcn = currentPlayBtn.querySelector('.play-icon');
+                const pauseIcn = currentPlayBtn.querySelector('.pause-icon');
+                if (isIslandPlaying) {
+                    if(playIcn) playIcn.style.display = 'none';
+                    if(pauseIcn) pauseIcn.style.display = 'block';
+                    startIslandProgress();
+                } else {
+                    if(playIcn) playIcn.style.display = 'block';
+                    if(pauseIcn) pauseIcn.style.display = 'none';
+                    stopIslandProgress();
+                }
+            };
+        }
+        if (currentHeartBtn) {
+            currentHeartBtn.onclick = function(e) { e.stopPropagation(); this.classList.toggle('active'); };
+        }
+        if (currentCommentBtn) {
+            currentCommentBtn.onclick = function(e) {
+                e.stopPropagation();
+                if (dynamicIslandState === 'medium') dynamicIslandState = 'large';
+                else if (dynamicIslandState === 'large') dynamicIslandState = 'medium';
+                updateDynamicIslandUI();
+            };
+        }
+        if (currentRewindBtn) {
+            currentRewindBtn.onclick = function(e) {
+                e.stopPropagation(); if (!isIslandPlaying && islandProgressValue === 0) return;
+                islandProgressValue = Math.max(0, islandProgressValue - 10);
+                const progBar = dynamicIslandContent.querySelector('.progress');
+                if(progBar) progBar.style.width = islandProgressValue + '%';
+            };
+        }
+        if (currentForwardBtn) {
+            currentForwardBtn.onclick = function(e) {
+                e.stopPropagation(); if (!isIslandPlaying && islandProgressValue === 100) return;
+                islandProgressValue = Math.min(100, islandProgressValue + 10);
+                const progBar = dynamicIslandContent.querySelector('.progress');
+                if(progBar) progBar.style.width = islandProgressValue + '%';
+            };
+        }
+        if (currentProgressContainer) {
+            currentProgressContainer.onclick = function(e) {
+                e.stopPropagation();
+                const rect = this.getBoundingClientRect();
+                const clickPosition = e.clientX - rect.left;
+                const percentage = (clickPosition / rect.width) * 100;
+                islandProgressValue = Math.min(100, Math.max(0, percentage));
+                const progBar = dynamicIslandContent.querySelector('.progress');
+                if(progBar) progBar.style.width = islandProgressValue + '%';
+                if (!isIslandPlaying) {
+                    isIslandPlaying = true;
+                    const playIcn = dynamicIslandContent.querySelector('.play-btn .play-icon');
+                    const pauseIcn = dynamicIslandContent.querySelector('.play-btn .pause-icon');
+                    if(playIcn) playIcn.style.display = 'none';
+                    if(pauseIcn) pauseIcn.style.display = 'block';
+                    startIslandProgress();
+                }
+            };
+        }
+    }
+
+    function startIslandProgress() {
+        stopIslandProgress();
+        const currentProgressBar = dynamicIslandContent.querySelector('.progress');
+        if (currentProgressBar) {
+            islandProgressInterval = setInterval(function() {
+                if (isIslandPlaying) {
+                    islandProgressValue += 0.5;
+                    if (islandProgressValue >= 100) {
+                        islandProgressValue = 100;
+                        isIslandPlaying = false;
+                        const playIcn = dynamicIslandContent.querySelector('.play-btn .play-icon');
+                        const pauseIcn = dynamicIslandContent.querySelector('.play-btn .pause-icon');
+                        if(playIcn) playIcn.style.display = 'block';
+                        if(pauseIcn) pauseIcn.style.display = 'none';
+                        stopIslandProgress();
+                    }
+                    currentProgressBar.style.width = islandProgressValue + '%';
+                }
+            }, 200);
+        }
+    }
+
+    function stopIslandProgress() { 
+        clearInterval(islandProgressInterval); 
+    }
+
+    /* Initialize Music Player */
+    function initializeMusicPlayer() {
+        if (!dynamicIsland || !dynamicIslandContent) return;
+
+        dynamicIslandContent.innerHTML = `
+            <div class="music-player">
+                <div class="song-info">
+                    <div class="song-title" id="island-song-title">Moonlight Sonata</div>
+                    <div class="artist" id="island-song-artist">Beethoven</div>
+                </div>
+                <div class="progress-bar-container">
+                    <div class="progress" style="width:${islandProgressValue}%"></div>
+                </div>
+                <div class="controls">
+                    <div class="side-controls">
+                        <div class="control heart-btn">
+                            <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                        </div>
+                        <div class="control rewind-btn">
+                            <svg viewBox="0 0 24 24"><path d="M11 16.07V7.93c0-.81-.91-1.28-1.58-.82l-4.77 3.53c-.61.46-.61 1.3 0 1.76l4.77 3.53c.67.47 1.58 0 1.58-.82zm1.66-3.25l4.77 3.53c.66.47 1.58-.01 1.58-.82V7.93c0-.81-.91-1.28-1.58-.82l-4.77 3.53c-.61.45-.61 1.29 0 1.76z"/></svg>
+                        </div>
+                    </div>
+                    <div class="main-controls">
+                        <div class="control play-btn">
+                            <svg class="play-icon" viewBox="0 0 24 24" style="display: none;"><path d="M8 5v14l11-7z"/></svg>
+                            <svg class="pause-icon" viewBox="0 0 24 24" style="display: block;"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+                        </div>
+                    </div>
+                    <div class="side-controls">
+                        <div class="control forward-btn">
+                            <svg viewBox="0 0 24 24"><path d="M5.58 16.89l4.77-3.53c.61-.45.61-1.3 0-1.76L5.58 7.93c-.66-.47-1.58.01-1.58.82v7.24c0 .81.91 1.29 1.58.82zm8 0l4.77-3.53c.61-.45.61-1.3 0-1.76l-4.77-3.53c-.66-.47-1.58.01-1.58.82v7.24c0 .81.91 1.29 1.58.82z"/></svg>
+                        </div>
+                        <div class="control comment-btn">
+                            <svg viewBox="0 0 24 24"><path d="M21.99 4c0-1.1-.89-2-1.99-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14l4 4-.01-18z"/></svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="comment-section">
+                    <div class="comment">
+                        <div class="comment-avatar" style="background-image: url('https://source.unsplash.com/random/50x50/?avatar,person7');"></div>
+                        <div class="comment-content">
+                            <div class="comment-user">乐迷张三</div>
+                            <div class="comment-text-d">这首Moonlight Sonata太好听了！单曲循环中！</div>
+                            <div class="comment-like">
+                                <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                                15
+                            </div>
+                        </div>
+                    </div>
+                    <div class="comment">
+                        <div class="comment-avatar" style="background-image: url('https://source.unsplash.com/random/50x50/?avatar,person8');"></div>
+                        <div class="comment-content">
+                            <div class="comment-user">小耳朵李四</div>
+                            <div class="comment-text-d">Beethoven的作品真有特色！</div>
+                            <div class="comment-like">
+                                <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                                8
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+        
+        bindDynamicIslandMusicControls();
+    }
+
+    /* Dynamic Island Interactions */
+    if (dynamicIsland) {
+        dynamicIsland.addEventListener('click', function(e) {
+            if (e.target.closest('.control') || e.target.closest('.progress-bar-container')) {
+                return;
+            }
+            
+            if (dynamicIslandState === 'small') dynamicIslandState = 'medium';
+            else if (dynamicIslandState === 'medium') dynamicIslandState = 'large';
+            else if (dynamicIslandState === 'large') dynamicIslandState = 'medium';
+            updateDynamicIslandUI();
+        });
+    }
+
+    document.addEventListener('click', function(e) {
+        if (dynamicIsland && !dynamicIsland.contains(e.target)) {
+            if (dynamicIslandState !== 'small') {
+                dynamicIslandState = 'small';
+                updateDynamicIslandUI();
+            }
+        }
+    });
+
+    /* Initialize */
+    initializeMusicPlayer();
     updateDynamicIslandUI();
-}, 1000);
+
         // ===================================================================
         // 1. 所有变量和常量定义
         // ===================================================================
@@ -4876,15 +5041,17 @@ const myFrameGrid = document.getElementById('my-frame-grid');
         const defaultGroupAvatar = 'https://i.postimg.cc/gc3QYCDy/1-NINE7-Five.jpg';
         let notificationTimeout;
 
-const npcAvatarPool = {
-    'anime_boy': [ 'https://i.postimg.cc/pL5505fT/image.png', 'https://i.postimg.cc/8CKdY2z4/image.png' ],
-    'anime_girl': [ 'https://i.postimg.cc/PqgqfH7S/image.png', 'https://i.postimg.cc/Z5pCY9tQ/image.png' ],
-    'cat': [ 'https://i.postimg.cc/d11x6HKZ/image.png', 'https://i.postimg.cc/VL1gLgV3/image.png' ],
-    'professional': [ 'https://i.postimg.cc/13yXhJg9/image.png', 'https://i.postimg.cc/W34kKFN5/image.png'],
-    'pixel_art': [ 'https://i.postimg.cc/VvF0tGgG/image.png', 'https://i.postimg.cc/wMPyS8bB/image.png' ]
+// ▼▼▼ 在JS顶部，变量定义区，添加这个新常量 ▼▼▼
+const DEFAULT_APP_ICONS = {
+    'world-book': 'https://i.postimg.cc/mZ0vV6tT/IMG-6907.jpg',
+    'qq': 'https://i.postimg.cc/gJ7Dz5fj/IMG-6906.jpg',
+    'api-settings': 'https://i.postimg.cc/RhnTNdBR/IMG-6908.jpg',
+    'wallpaper': 'https://i.postimg.cc/WbgQy6kg/IMG-6909.jpg',
+    'font': 'https://files.catbox.moe/j1kn1a.jpeg'
 };
+// ▲▲▲ 添加结束 ▲▲▲
 
-        const avatarFrames = [ { id: 'none', url: '', name: '无' }, { id: 'frame_cat_ear', url: 'https://i.postimg.cc/fLDnz5Pn/IMG-5574.gif', name: '1' }, { id: 'frame_ribbon', url: 'https://i.postimg.cc/HxH3cNHz/IMG-6871.gif', name: '2' }, { id: 'frame_flower', url: 'https://i.postimg.cc/jCVK0fGL/IMG-6890.gif', name: '3' }, { id: 'frame_tech', url: 'https://i.postimg.cc/85Zsyjwn/IMG-6895.gif', name: '4' }, { id: 'frame_5', url: 'https://i.postimg.cc/cJtpZCB3/IMG-6894.gif', name: '5' }, { id: 'frame_6', url: 'https://i.postimg.cc/63sDQKMm/IMG-6893.gif', name: '6' }, { id: 'frame_7', url: 'https://i.postimg.cc/cHQPgzj4/IMG-6888.gif', name: '7' }, { id: 'frame_8', url: 'https://i.postimg.cc/dVLXm3Xf/IMG-6885.gif', name: '8' }, { id: 'frame_9', url: 'https://i.postimg.cc/kGsZwbq0/IMG-6886.gif', name: '9' }, { id: 'frame_10', url: 'https://i.postimg.cc/63NmX03s/IMG-4366.gif', name: '10' }, { id: 'frame_11', url: 'https://i.postimg.cc/zvz2LGK0/IMG-4367.gif', name: '11' }, { id: 'frame_12', url: 'https://i.postimg.cc/prsGKMBx/IMG-4370.gif', name: '12' }, { id: 'frame_13', url: 'https://i.postimg.cc/gk0BmrY0/IMG-4371.gif', name: '13' }, { id: 'frame_14', url: 'https://i.postimg.cc/fRt2SFSn/IMG-4368.gif', name: '14' }, { id: 'frame_cat_ear', url: 'https://i.postimg.cc/kGgwJhPH/IMG-4374.gif', name: '1' }, { id: 'frame_ribbon', url: 'https://i.postimg.cc/PrcKH436/IMG-4376.gif', name: '2' }, { id: 'frame_flower', url: 'https://i.postimg.cc/fRV86FMq/IMG-4381.gif', name: '3' }, { id: 'frame_tech', url: 'https://i.postimg.cc/HsyqMVyk/IMG-4385.gif', name: '4' }, { id: 'frame_5', url: 'https://i.postimg.cc/qBbKK7dS/IMG-4386.gif', name: '5' }, { id: 'frame_6', url: 'https://i.postimg.cc/05wnd389/IMG-4388.gif', name: '6' }, { id: 'frame_7', url: 'https://i.postimg.cc/RZNLhbbr/IMG-4389.gif', name: '7' }, { id: 'frame_8', url: 'https://i.postimg.cc/fLTc42dg/IMG-4391.gif', name: '8' }, { id: 'frame_9', url: 'https://i.postimg.cc/FzbGNdRT/IMG-4392.gif', name: '9' }, { id: 'frame_10', url: 'https://i.postimg.cc/XY63sTS3/IMG-4393.gif', name: '10' }, { id: 'frame_11', url: 'https://i.postimg.cc/Cx9vCVWH/IMG-4395.gif', name: '11' }, { id: 'frame_12', url: 'https://i.postimg.cc/kMfPQBwQ/IMG-4396.gif', name: '12' }, { id: 'frame_13', url: 'https://i.postimg.cc/CLrZQMMD/IMG-4398.gif', name: '13' }, { id: 'frame_14', url: 'https://i.postimg.cc/L4zwDhTC/IMG-4399.gif', name: '14' }, { id: 'frame_cat_ear', url: 'https://i.postimg.cc/yN3s8szM/IMG-4400.gif', name: '1' }, { id: 'frame_ribbon', url: 'https://i.postimg.cc/59Cn1tkB/IMG-4401.gif', name: '2' }, { id: 'frame_flower', url: 'https://i.postimg.cc/g0s1V0PX/IMG-4402.gif', name: '3' }, { id: 'frame_tech', url: 'https://i.postimg.cc/Jn1DFPgY/IMG-4403.gif', name: '4' }, { id: 'frame_5', url: 'https://i.postimg.cc/q7cQnDy1/IMG-4404.gif', name: '5' }, { id: 'frame_6', url: 'https://i.postimg.cc/RFK3q2t0/IMG-4407.gif', name: '6' }, { id: 'frame_7', url: 'https://i.postimg.cc/gcV0VR2t/IMG-4408.gif', name: '7' }, { id: 'frame_8', url: 'https://i.postimg.cc/W1CjLb4J/IMG-4409.gif', name: '8' }, { id: 'frame_9', url: 'https://i.postimg.cc/Ss7pM6fW/IMG-4410.gif', name: '9' }, { id: 'frame_10', url: 'https://i.postimg.cc/nrFfYX3N/IMG-4412.gif', name: '10' }, { id: 'frame_11', url: 'https://i.postimg.cc/cHWp0KG6/IMG-4413.gif', name: '11' }, { id: 'frame_12', url: 'https://i.postimg.cc/4yNjHrdg/IMG-4414.gif', name: '12' }, { id: 'frame_13', url: 'https://i.postimg.cc/hPX5F8Qp/IMG-4415.gif', name: '13' }, { id: 'frame_14', url: 'https://i.postimg.cc/vHCSG1WM/IMG-4416.gif', name: '14' }, { id: 'frame_cat_ear', url: 'https://i.postimg.cc/x1Hp80Rm/IMG-4417.gif', name: '1' }, { id: 'frame_ribbon', url: 'https://i.postimg.cc/FHRcCGfH/IMG-4418.gif', name: '2' }, { id: 'frame_flower', url: 'https://i.postimg.cc/13hhJ77p/IMG-4419.gif', name: '3' }, { id: 'frame_tech', url: 'https://i.postimg.cc/J4WCQd2j/IMG-4420.gif', name: '4' }, { id: 'frame_5', url: 'https://i.postimg.cc/Dydkpd9H/IMG-4421.gif', name: '5' }, { id: 'frame_6', url: 'https://i.postimg.cc/mrkvDxPW/IMG-4422.gif', name: '6' }, { id: 'frame_7', url: 'https://i.postimg.cc/76Tj3g1B/IMG-4425.gif', name: '7' }, { id: 'frame_8', url: 'https://i.postimg.cc/3N5Vndn3/IMG-4426.gif', name: '8' }, { id: 'frame_9', url: 'https://i.postimg.cc/05DLr0yj/IMG-4427.gif', name: '9' }, { id: 'frame_10', url: 'https://i.postimg.cc/GhR6DT4Q/IMG-4428.gif', name: '10' }, { id: 'frame_11', url: 'https://i.postimg.cc/fRTF24jS/IMG-4430.gif', name: '11' }, { id: 'frame_12', url: 'https://i.postimg.cc/R0WYmcYM/IMG-4431.gif', name: '12' }, { id: 'frame_13', url: 'https://i.postimg.cc/nrJSqNhz/IMG-4432.gif', name: '13' }, { id: 'frame_14', url: 'https://i.postimg.cc/tC9mJ0cv/IMG-4438.gif', name: '14' }, { id: 'frame_cat_ear', url: 'https://i.postimg.cc/XNkQTHvf/IMG-5561.gif', name: '1' }, { id: 'frame_ribbon', url: 'https://i.postimg.cc/Mpv5fzm5/IMG-4439.gif', name: '2' }, { id: 'frame_flower', url: 'https://i.postimg.cc/T1tjhsyB/IMG-4720.gif', name: '3' }, { id: 'frame_tech', url: 'https://i.postimg.cc/c4JMPd2W/IMG-4724.gif', name: '4' }, { id: 'frame_5', url: 'https://i.postimg.cc/g2XykNGB/IMG-4727.gif', name: '5' }, { id: 'frame_6', url: 'https://i.postimg.cc/y8MmJcd6/IMG-4728.gif', name: '6' }, { id: 'frame_7', url: 'https://i.postimg.cc/Lsjzj5Yt/IMG-4729.gif', name: '7' }, { id: 'frame_8', url: 'https://i.postimg.cc/bNdk33SN/IMG-4893.gif', name: '8' }, { id: 'frame_9', url: 'https://i.postimg.cc/4x9tTy1D/IMG-5563.gif', name: '9' }, { id: 'frame_10', url: 'https://i.postimg.cc/DZshzKv6/IMG-5576.gif', name: '10' }, { id: 'frame_11', url: 'https://i.postimg.cc/Fsvr71JL/IMG-5573.gif', name: '11' }, { id: 'frame_12', url: 'https://i.postimg.cc/Fz3HwLk9/IMG-5569.gif', name: '12' }, { id: 'frame_13', url: 'https://i.postimg.cc/wjH180kn/IMG-5566.gif', name: '13' }, { id: 'frame_14', url: 'https://i.postimg.cc/MG6qtLYK/IMG-5565.gif', name: '14' }, { id: 'frame_cat_ear', url: 'https://i.postimg.cc/CKgDNYVb/IMG-5577.gif', name: '1' }, { id: 'frame_ribbon', url: 'https://i.postimg.cc/hj4dkrvj/IMG-5578.gif', name: '2' }, { id: 'frame_flower', url: 'https://i.postimg.cc/hj4dkrvj/IMG-5578.gif', name: '3' }, { id: 'frame_tech', url: 'https://i.postimg.cc/C5XnfpNB/IMG-5579.gif', name: '4' }, { id: 'frame_5', url: 'https://i.postimg.cc/4y7mGFgJ/IMG-5716.gif', name: '5' }, { id: 'frame_6', url: 'https://i.postimg.cc/FzM1Hgr0/IMG-5717.gif', name: '6' }, { id: 'frame_7', url: 'https://i.postimg.cc/rF4KYbjj/IMG-5720.gif', name: '7' }, { id: 'frame_8', url: 'https://i.postimg.cc/6pLTBvDG/IMG-5721.gif', name: '8' }, { id: 'frame_9', url: 'https://i.postimg.cc/VNK6Ccsf/IMG-5722.gif', name: '9' }, { id: 'frame_10', url: 'https://i.postimg.cc/wx72fhr2/IMG-5968.gif', name: '10' }, { id: 'frame_11', url: 'https://i.postimg.cc/QdrqdvdY/IMG-5969.gif', name: '11' }, { id: 'frame_12', url: 'https://i.postimg.cc/0yd0MZ6k/IMG-5971.gif', name: '12' }, { id: 'frame_13', url: 'https://i.postimg.cc/1zmcp66p/IMG-5973.gif', name: '13' }, { id: 'frame_14', url: 'https://i.postimg.cc/wBw5Fvcn/IMG-5974.gif', name: '14' }, { id: 'frame_cat_ear', url: 'https://i.postimg.cc/R0pfKYvB/IMG-5976.gif', name: '1' }, { id: 'frame_ribbon', url: 'https://i.postimg.cc/9fQZ425b/IMG-5975.gif', name: '2' }, { id: 'frame_flower', url: 'https://i.postimg.cc/v8V9xXjJ/IMG-6137.gif', name: '3' }, { id: 'frame_tech', url: 'https://i.postimg.cc/WbmkXzsS/IMG-6138.gif', name: '4' }, { id: 'frame_5', url: 'https://i.postimg.cc/Dw2bDhZh/IMG-6140.gif', name: '5' }, { id: 'frame_6', url: 'https://i.postimg.cc/ZqQBCyLY/IMG-6144.gif', name: '6' }, { id: 'frame_7', url: 'https://i.postimg.cc/qRCtnMms/IMG-6145.gif', name: '7' }, { id: 'frame_8', url: 'https://i.postimg.cc/1Rwn3XVP/IMG-6146.gif', name: '8' }, { id: 'frame_9', url: 'https://i.postimg.cc/Kv51tW5H/IMG-6147.gif', name: '9' }, { id: 'frame_10', url: 'https://i.postimg.cc/nhcC21Rc/IMG-6148.gif', name: '10' }, { id: 'frame_11', url: 'https://i.postimg.cc/fTWzQRx8/IMG-6149.gif', name: '11' }, { id: 'frame_12', url: 'https://i.postimg.cc/LXyyqDbY/IMG-6294.gif', name: '12' }, { id: 'frame_13', url: 'https://i.postimg.cc/7Zgm1wRy/IMG-6295.gif', name: '13' }, { id: 'frame_14', url: 'https://i.postimg.cc/5tbpnDcQ/IMG-6296.gif', name: '14' }, { id: 'frame_cat_ear', url: 'https://i.postimg.cc/YSRRV8kn/IMG-6297.gif', name: '1' }, { id: 'frame_ribbon', url: 'https://i.postimg.cc/k45sd8gn/IMG-6375.gif', name: '2' }, { id: 'frame_flower', url: 'https://i.postimg.cc/50k390X8/IMG-6376.gif', name: '3' }, { id: 'frame_tech', url: 'https://i.postimg.cc/90RBDh9K/IMG-6377.gif', name: '4' }, { id: 'frame_5', url: 'https://i.postimg.cc/cCpBYbMH/IMG-6552.gif', name: '5' }, { id: 'frame_6', url: 'https://i.postimg.cc/Pf9g2fSL/IMG-6554.gif', name: '6' }, { id: 'frame_7', url: 'https://i.postimg.cc/gkhf597g/IMG-6555.gif', name: '7' }, { id: 'frame_8', url: 'https://i.postimg.cc/g2PfbSFm/IMG-6556.gif', name: '8' }, { id: 'frame_9', url: 'https://i.postimg.cc/pLY3WfR8/IMG-6557.gif', name: '9' }, { id: 'frame_10', url: 'https://i.postimg.cc/65Cmcr7S/IMG-6559.gif', name: '10' }, { id: 'frame_11', url: 'https://i.postimg.cc/Y94XWYKd/IMG-6560.gif', name: '11' }, { id: 'frame_12', url: 'https://i.postimg.cc/ydwLXx7s/IMG-6562.gif', name: '12' }, { id: 'frame_13', url: 'https://i.postimg.cc/G3y73Fj2/IMG-6563.gif', name: '13' }, { id: 'frame_14', url: 'https://i.postimg.cc/TYvkKKkc/IMG-6565.gif', name: '14' }, { id: 'frame_cat_ear', url: 'https://i.postimg.cc/GmcqjZn8/IMG-6566.gif', name: '1' }, { id: 'frame_ribbon', url: 'https://i.postimg.cc/k5Gs0K47/IMG-6567.gif', name: '2' }, { id: 'frame_flower', url: 'https://i.postimg.cc/XJy8JWdh/IMG-6568.gif', name: '3' }, { id: 'frame_tech', url: 'https://i.postimg.cc/fycfcvHf/IMG-6569.gif', name: '4' }, { id: 'frame_5', url: 'https://i.postimg.cc/J7ZxC11H/IMG-6570.gif', name: '5' }, { id: 'frame_6', url: 'https://i.postimg.cc/hPnrSHjy/IMG-4434.gif', name: '6' }, { id: 'frame_7', url: 'https://i.postimg.cc/YqxxjbLp/IMG-6572.gif', name: '7' }, { id: 'frame_8', url: 'https://i.postimg.cc/wjfcQMkZ/IMG-6573.gif', name: '8' }, { id: 'frame_9', url: 'https://i.postimg.cc/Vv8jkCYr/IMG-6574.gif', name: '9' }, { id: 'frame_10', url: 'https://i.postimg.cc/MZ77rdDy/IMG-6850.gif', name: '10' }, { id: 'frame_11', url: 'https://i.postimg.cc/T3NvqJCZ/IMG-6851.gif', name: '11' }, { id: 'frame_12', url: 'https://i.postimg.cc/28TsrxRV/IMG-6852.gif', name: '12' }, { id: 'frame_13', url: 'https://i.postimg.cc/VkV2bLNw/IMG-6853.gif', name: '13' }, { id: 'frame_14', url: 'https://i.postimg.cc/gJ95NSRB/IMG-6854.gif', name: '14' }, { id: 'frame_cat_ear', url: 'https://i.postimg.cc/d1qsQsbQ/IMG-6855.gif', name: '1' }, { id: 'frame_ribbon', url: 'https://i.postimg.cc/gJNYx9pV/IMG-6856.gif', name: '2' }, { id: 'frame_flower', url: 'https://i.postimg.cc/fyPDvxJk/IMG-6860.gif', name: '3' }, { id: 'frame_tech', url: 'https://i.postimg.cc/QMDsSNxg/IMG-6861.gif', name: '4' }, { id: 'frame_5', url: 'https://i.postimg.cc/vBqsQW7X/IMG-6858.gif', name: '5' }, { id: 'frame_6', url: 'https://i.postimg.cc/Y0vwjhb7/IMG-6857.gif', name: '6' }, { id: 'frame_7', url: 'https://i.postimg.cc/90sH9Cn7/IMG-6868.gif', name: '7' }, { id: 'frame_8', url: 'https://i.postimg.cc/Y2PHZzCC/IMG-6866.gif', name: '8' }, { id: 'frame_9', url: 'https://i.postimg.cc/7Z8yYP7v/IMG-6889.gif', name: '9' }, { id: 'frame_10', url: 'https://i.postimg.cc/nryNzTXK/IMG-6915.gif', name: '10' }, { id: 'frame_11', url: 'https://i.postimg.cc/Qx5dqyJ3/IMG-6917.gif', name: '11' }, { id: 'frame_12', url: 'https://i.postimg.cc/Wbr0JSDD/IMG-5316.gif', name: '12' }, { id: 'frame_13', url: 'https://i.postimg.cc/tgR6wjBP/IMG-5570.gif', name: '13' }, { id: 'frame_14', url: 'https://i.postimg.cc/d0WCKxff/IMG-6932.gif', name: '14' }, { id: 'frame_11', url: 'https://i.postimg.cc/Ss3znzk7/IMG-6934.gif', name: '11' }, { id: 'frame_12', url: 'https://i.postimg.cc/nrm9BcL8/IMG-6941.gif', name: '12' }, { id: 'frame_13', url: 'https://i.postimg.cc/ZYvd1jxf/IMG-6937.gif', name: '13' }, { id: 'frame_14', url: 'https://i.postimg.cc/sDFhySn3/IMG-6936.gif', name: '14' }, { id: 'frame_13', url: 'https://i.postimg.cc/43PhvxRq/IMG-6922.gif', name: '13' }, { id: 'frame_14', url: 'https://i.postimg.cc/3Rb46fRZ/IMG-6923.gif', name: '14' }, { id: 'frame_13', url: 'https://i.postimg.cc/PJppkbvn/IMG-6918.gif', name: '13' }, { id: 'frame_14', url: 'https://i.postimg.cc/XqRZNZ9G/IMG-6916.gif', name: '14' }, { id: 'frame_14', url: 'https://i.postimg.cc/RVt6sRzc/IMG-6939.gif', name: '14' }, { id: 'frame_13', url: 'https://i.postimg.cc/mgGc0HbK/IMG-6926.gif', name: '13' }, { id: 'frame_14', url: 'https://i.postimg.cc/P5zLh5JJ/IMG-6942.gif', name: '14' }, { id: 'frame_14', url: 'https://i.postimg.cc/xCqqKGRN/IMG-6929.gif', name: '14' },
+                const avatarFrames = [ { id: 'none', url: '', name: '无' }, { id: 'frame_cat_ear', url: 'https://i.postimg.cc/wB1Vt74J/IMG-1585.gif', name: '1' }, { id: 'frame_ribbon', url: 'https://i.postimg.cc/wxRKmQbf/IMG-1594.gif', name: '2' }, { id: 'frame_flower', url: 'https://i.postimg.cc/W4ZrZKgp/IMG-1595.gif', name: '3' }, { id: 'frame_tech', url: 'https://i.postimg.cc/sgsH2YhN/IMG-1626.gif', name: '4' }, { id: 'frame_5', url: 'https://i.postimg.cc/DwRgX1Jh/IMG-1600.gif', name: '5' }, { id: 'frame_6', url: 'https://i.postimg.cc/B6BckyhZ/IMG-1602.gif', name: '6' }, { id: 'frame_7', url: 'https://i.postimg.cc/wTvc4wDH/IMG-1603.gif', name: '7' }, { id: 'frame_8', url: 'https://i.postimg.cc/xdrvCYhT/IMG-1604.gif', name: '8' }, { id: 'frame_9', url: 'https://i.postimg.cc/0QnDcSQb/IMG-1606.gif', name: '9' }, { id: 'frame_10', url: 'https://i.postimg.cc/ryh5453H/IMG-1608.gif', name: '10' }, { id: 'frame_11', url: 'https://i.postimg.cc/9fj92bwD/IMG-1611.gif', name: '11' }, { id: 'frame_12', url: 'https://i.postimg.cc/CKHqx8bm/IMG-1612.gif', name: '12' }, { id: 'frame_13', url: 'https://i.postimg.cc/tg5sjjHc/IMG-1613.gif', name: '13' }, { id: 'frame_14', url: 'https://i.postimg.cc/Mp0T7SXG/IMG-1628.gif', name: '14' }, { id: 'frame_cat_ear', url: 'https://i.postimg.cc/FR6srFCT/IMG-1630.gif', name: '1' }, { id: 'frame_ribbon', url: 'https://i.postimg.cc/wB7jSs01/IMG-1631.gif', name: '2' }, { id: 'frame_flower', url: 'https://i.postimg.cc/jdcq2h1W/IMG-1632.gif', name: '3' }, { id: 'frame_tech', url: 'https://i.postimg.cc/N03BSCKn/IMG-1633.gif', name: '4' }, { id: 'frame_5', url: 'https://i.postimg.cc/NFYYfy77/IMG-1635.gif', name: '5' }, { id: 'frame_6', url: 'https://i.postimg.cc/QMTrQgfJ/IMG-1636.gif', name: '6' }, { id: 'frame_7', url: 'https://i.postimg.cc/8PX8xX3b/IMG-1639.gif', name: '7' }, { id: 'frame_8', url: 'https://i.postimg.cc/fLTc42dg/IMG-4391.gif', name: '8' }, { id: 'frame_9', url: 'https://i.postimg.cc/FzbGNdRT/IMG-4392.gif', name: '9' }, { id: 'frame_10', url: 'https://i.postimg.cc/XY63sTS3/IMG-4393.gif', name: '10' }, { id: 'frame_11', url: 'https://i.postimg.cc/Cx9vCVWH/IMG-4395.gif', name: '11' }, { id: 'frame_12', url: 'https://i.postimg.cc/kMfPQBwQ/IMG-4396.gif', name: '12' }, { id: 'frame_13', url: 'https://i.postimg.cc/CLrZQMMD/IMG-4398.gif', name: '13' }, { id: 'frame_14', url: 'https://i.postimg.cc/L4zwDhTC/IMG-4399.gif', name: '14' }, { id: 'frame_cat_ear', url: 'https://i.postimg.cc/yN3s8szM/IMG-4400.gif', name: '1' }, { id: 'frame_ribbon', url: 'https://i.postimg.cc/59Cn1tkB/IMG-4401.gif', name: '2' }, { id: 'frame_flower', url: 'https://i.postimg.cc/g0s1V0PX/IMG-4402.gif', name: '3' }, { id: 'frame_tech', url: 'https://i.postimg.cc/Jn1DFPgY/IMG-4403.gif', name: '4' }, { id: 'frame_5', url: 'https://i.postimg.cc/q7cQnDy1/IMG-4404.gif', name: '5' }, { id: 'frame_6', url: 'https://i.postimg.cc/RFK3q2t0/IMG-4407.gif', name: '6' }, { id: 'frame_7', url: 'https://i.postimg.cc/gcV0VR2t/IMG-4408.gif', name: '7' }, { id: 'frame_8', url: 'https://i.postimg.cc/W1CjLb4J/IMG-4409.gif', name: '8' }, { id: 'frame_9', url: 'https://i.postimg.cc/Ss7pM6fW/IMG-4410.gif', name: '9' }, { id: 'frame_10', url: 'https://i.postimg.cc/nrFfYX3N/IMG-4412.gif', name: '10' }, { id: 'frame_11', url: 'https://i.postimg.cc/cHWp0KG6/IMG-4413.gif', name: '11' }, { id: 'frame_12', url: 'https://i.postimg.cc/4yNjHrdg/IMG-4414.gif', name: '12' }, { id: 'frame_13', url: 'https://i.postimg.cc/hPX5F8Qp/IMG-4415.gif', name: '13' }, { id: 'frame_14', url: 'https://i.postimg.cc/vHCSG1WM/IMG-4416.gif', name: '14' }, { id: 'frame_cat_ear', url: 'https://i.postimg.cc/x1Hp80Rm/IMG-4417.gif', name: '1' }, { id: 'frame_ribbon', url: 'https://i.postimg.cc/FHRcCGfH/IMG-4418.gif', name: '2' }, { id: 'frame_flower', url: 'https://i.postimg.cc/13hhJ77p/IMG-4419.gif', name: '3' }, { id: 'frame_tech', url: 'https://i.postimg.cc/J4WCQd2j/IMG-4420.gif', name: '4' }, { id: 'frame_5', url: 'https://i.postimg.cc/Dydkpd9H/IMG-4421.gif', name: '5' }, { id: 'frame_6', url: 'https://i.postimg.cc/mrkvDxPW/IMG-4422.gif', name: '6' }, { id: 'frame_7', url: 'https://i.postimg.cc/76Tj3g1B/IMG-4425.gif', name: '7' }, { id: 'frame_8', url: 'https://i.postimg.cc/3N5Vndn3/IMG-4426.gif', name: '8' }, { id: 'frame_9', url: 'https://i.postimg.cc/05DLr0yj/IMG-4427.gif', name: '9' }, { id: 'frame_10', url: 'https://i.postimg.cc/GhR6DT4Q/IMG-4428.gif', name: '10' }, { id: 'frame_11', url: 'https://i.postimg.cc/fRTF24jS/IMG-4430.gif', name: '11' }, { id: 'frame_12', url: 'https://i.postimg.cc/R0WYmcYM/IMG-4431.gif', name: '12' }, { id: 'frame_13', url: 'https://i.postimg.cc/nrJSqNhz/IMG-4432.gif', name: '13' }, { id: 'frame_14', url: 'https://i.postimg.cc/tC9mJ0cv/IMG-4438.gif', name: '14' }, { id: 'frame_cat_ear', url: 'https://i.postimg.cc/XNkQTHvf/IMG-5561.gif', name: '1' }, { id: 'frame_ribbon', url: 'https://i.postimg.cc/Mpv5fzm5/IMG-4439.gif', name: '2' }, { id: 'frame_flower', url: 'https://i.postimg.cc/T1tjhsyB/IMG-4720.gif', name: '3' }, { id: 'frame_tech', url: 'https://i.postimg.cc/c4JMPd2W/IMG-4724.gif', name: '4' }, { id: 'frame_5', url: 'https://i.postimg.cc/g2XykNGB/IMG-4727.gif', name: '5' }, { id: 'frame_6', url: 'https://i.postimg.cc/y8MmJcd6/IMG-4728.gif', name: '6' }, { id: 'frame_7', url: 'https://i.postimg.cc/Lsjzj5Yt/IMG-4729.gif', name: '7' }, { id: 'frame_8', url: 'https://i.postimg.cc/bNdk33SN/IMG-4893.gif', name: '8' }, { id: 'frame_9', url: 'https://i.postimg.cc/4x9tTy1D/IMG-5563.gif', name: '9' }, { id: 'frame_10', url: 'https://i.postimg.cc/DZshzKv6/IMG-5576.gif', name: '10' }, { id: 'frame_11', url: 'https://i.postimg.cc/Fsvr71JL/IMG-5573.gif', name: '11' }, { id: 'frame_12', url: 'https://i.postimg.cc/Fz3HwLk9/IMG-5569.gif', name: '12' }, { id: 'frame_13', url: 'https://i.postimg.cc/wjH180kn/IMG-5566.gif', name: '13' }, { id: 'frame_14', url: 'https://i.postimg.cc/MG6qtLYK/IMG-5565.gif', name: '14' }, { id: 'frame_cat_ear', url: 'https://i.postimg.cc/CKgDNYVb/IMG-5577.gif', name: '1' }, { id: 'frame_ribbon', url: 'https://i.postimg.cc/hj4dkrvj/IMG-5578.gif', name: '2' }, { id: 'frame_flower', url: 'https://i.postimg.cc/hj4dkrvj/IMG-5578.gif', name: '3' }, { id: 'frame_tech', url: 'https://i.postimg.cc/C5XnfpNB/IMG-5579.gif', name: '4' }, { id: 'frame_5', url: 'https://i.postimg.cc/4y7mGFgJ/IMG-5716.gif', name: '5' }, { id: 'frame_6', url: 'https://i.postimg.cc/FzM1Hgr0/IMG-5717.gif', name: '6' }, { id: 'frame_7', url: 'https://i.postimg.cc/rF4KYbjj/IMG-5720.gif', name: '7' }, { id: 'frame_8', url: 'https://i.postimg.cc/6pLTBvDG/IMG-5721.gif', name: '8' }, { id: 'frame_9', url: 'https://i.postimg.cc/VNK6Ccsf/IMG-5722.gif', name: '9' }, { id: 'frame_10', url: 'https://i.postimg.cc/wx72fhr2/IMG-5968.gif', name: '10' }, { id: 'frame_11', url: 'https://i.postimg.cc/QdrqdvdY/IMG-5969.gif', name: '11' }, { id: 'frame_12', url: 'https://i.postimg.cc/0yd0MZ6k/IMG-5971.gif', name: '12' }, { id: 'frame_13', url: 'https://i.postimg.cc/1zmcp66p/IMG-5973.gif', name: '13' }, { id: 'frame_14', url: 'https://i.postimg.cc/wBw5Fvcn/IMG-5974.gif', name: '14' }, { id: 'frame_cat_ear', url: 'https://i.postimg.cc/R0pfKYvB/IMG-5976.gif', name: '1' }, { id: 'frame_ribbon', url: 'https://i.postimg.cc/9fQZ425b/IMG-5975.gif', name: '2' }, { id: 'frame_flower', url: 'https://i.postimg.cc/v8V9xXjJ/IMG-6137.gif', name: '3' }, { id: 'frame_tech', url: 'https://i.postimg.cc/WbmkXzsS/IMG-6138.gif', name: '4' }, { id: 'frame_5', url: 'https://i.postimg.cc/Dw2bDhZh/IMG-6140.gif', name: '5' }, { id: 'frame_6', url: 'https://i.postimg.cc/ZqQBCyLY/IMG-6144.gif', name: '6' }, { id: 'frame_7', url: 'https://i.postimg.cc/qRCtnMms/IMG-6145.gif', name: '7' }, { id: 'frame_8', url: 'https://i.postimg.cc/1Rwn3XVP/IMG-6146.gif', name: '8' }, { id: 'frame_9', url: 'https://i.postimg.cc/Kv51tW5H/IMG-6147.gif', name: '9' }, { id: 'frame_10', url: 'https://i.postimg.cc/nhcC21Rc/IMG-6148.gif', name: '10' }, { id: 'frame_11', url: 'https://i.postimg.cc/fTWzQRx8/IMG-6149.gif', name: '11' }, { id: 'frame_12', url: 'https://i.postimg.cc/LXyyqDbY/IMG-6294.gif', name: '12' }, { id: 'frame_13', url: 'https://i.postimg.cc/7Zgm1wRy/IMG-6295.gif', name: '13' }, { id: 'frame_14', url: 'https://i.postimg.cc/5tbpnDcQ/IMG-6296.gif', name: '14' }, { id: 'frame_cat_ear', url: 'https://i.postimg.cc/YSRRV8kn/IMG-6297.gif', name: '1' }, { id: 'frame_ribbon', url: 'https://i.postimg.cc/k45sd8gn/IMG-6375.gif', name: '2' }, { id: 'frame_flower', url: 'https://i.postimg.cc/50k390X8/IMG-6376.gif', name: '3' }, { id: 'frame_tech', url: 'https://i.postimg.cc/90RBDh9K/IMG-6377.gif', name: '4' }, { id: 'frame_5', url: 'https://i.postimg.cc/cCpBYbMH/IMG-6552.gif', name: '5' }, { id: 'frame_6', url: 'https://i.postimg.cc/Pf9g2fSL/IMG-6554.gif', name: '6' }, { id: 'frame_7', url: 'https://i.postimg.cc/gkhf597g/IMG-6555.gif', name: '7' }, { id: 'frame_8', url: 'https://i.postimg.cc/g2PfbSFm/IMG-6556.gif', name: '8' }, { id: 'frame_9', url: 'https://i.postimg.cc/pLY3WfR8/IMG-6557.gif', name: '9' }, { id: 'frame_10', url: 'https://i.postimg.cc/65Cmcr7S/IMG-6559.gif', name: '10' }, { id: 'frame_11', url: 'https://i.postimg.cc/Y94XWYKd/IMG-6560.gif', name: '11' }, { id: 'frame_12', url: 'https://i.postimg.cc/ydwLXx7s/IMG-6562.gif', name: '12' }, { id: 'frame_13', url: 'https://i.postimg.cc/G3y73Fj2/IMG-6563.gif', name: '13' }, { id: 'frame_14', url: 'https://i.postimg.cc/TYvkKKkc/IMG-6565.gif', name: '14' }, { id: 'frame_cat_ear', url: 'https://i.postimg.cc/GmcqjZn8/IMG-6566.gif', name: '1' }, { id: 'frame_ribbon', url: 'https://i.postimg.cc/k5Gs0K47/IMG-6567.gif', name: '2' }, { id: 'frame_flower', url: 'https://i.postimg.cc/XJy8JWdh/IMG-6568.gif', name: '3' }, { id: 'frame_tech', url: 'https://i.postimg.cc/fycfcvHf/IMG-6569.gif', name: '4' }, { id: 'frame_5', url: 'https://i.postimg.cc/J7ZxC11H/IMG-6570.gif', name: '5' }, { id: 'frame_6', url: 'https://i.postimg.cc/hPnrSHjy/IMG-4434.gif', name: '6' }, { id: 'frame_7', url: 'https://i.postimg.cc/YqxxjbLp/IMG-6572.gif', name: '7' }, { id: 'frame_8', url: 'https://i.postimg.cc/wjfcQMkZ/IMG-6573.gif', name: '8' }, { id: 'frame_9', url: 'https://i.postimg.cc/Vv8jkCYr/IMG-6574.gif', name: '9' }, { id: 'frame_10', url: 'https://i.postimg.cc/MZ77rdDy/IMG-6850.gif', name: '10' }, { id: 'frame_11', url: 'https://i.postimg.cc/T3NvqJCZ/IMG-6851.gif', name: '11' }, { id: 'frame_12', url: 'https://i.postimg.cc/28TsrxRV/IMG-6852.gif', name: '12' }, { id: 'frame_13', url: 'https://i.postimg.cc/VkV2bLNw/IMG-6853.gif', name: '13' }, { id: 'frame_14', url: 'https://i.postimg.cc/gJ95NSRB/IMG-6854.gif', name: '14' }, { id: 'frame_cat_ear', url: 'https://i.postimg.cc/d1qsQsbQ/IMG-6855.gif', name: '1' }, { id: 'frame_ribbon', url: 'https://i.postimg.cc/gJNYx9pV/IMG-6856.gif', name: '2' }, { id: 'frame_flower', url: 'https://i.postimg.cc/fyPDvxJk/IMG-6860.gif', name: '3' }, { id: 'frame_tech', url: 'https://i.postimg.cc/QMDsSNxg/IMG-6861.gif', name: '4' }, { id: 'frame_5', url: 'https://i.postimg.cc/vBqsQW7X/IMG-6858.gif', name: '5' }, { id: 'frame_6', url: 'https://i.postimg.cc/Y0vwjhb7/IMG-6857.gif', name: '6' }, { id: 'frame_7', url: 'https://i.postimg.cc/90sH9Cn7/IMG-6868.gif', name: '7' }, { id: 'frame_8', url: 'https://i.postimg.cc/Y2PHZzCC/IMG-6866.gif', name: '8' }, { id: 'frame_9', url: 'https://i.postimg.cc/7Z8yYP7v/IMG-6889.gif', name: '9' }, { id: 'frame_10', url: 'https://i.postimg.cc/nryNzTXK/IMG-6915.gif', name: '10' }, { id: 'frame_11', url: 'https://i.postimg.cc/Qx5dqyJ3/IMG-6917.gif', name: '11' }, { id: 'frame_12', url: 'https://i.postimg.cc/Wbr0JSDD/IMG-5316.gif', name: '12' }, { id: 'frame_13', url: 'https://i.postimg.cc/tgR6wjBP/IMG-5570.gif', name: '13' }, { id: 'frame_14', url: 'https://i.postimg.cc/d0WCKxff/IMG-6932.gif', name: '14' }, { id: 'frame_11', url: 'https://i.postimg.cc/Ss3znzk7/IMG-6934.gif', name: '11' }, { id: 'frame_12', url: 'https://i.postimg.cc/nrm9BcL8/IMG-6941.gif', name: '12' }, { id: 'frame_13', url: 'https://i.postimg.cc/ZYvd1jxf/IMG-6937.gif', name: '13' }, { id: 'frame_14', url: 'https://i.postimg.cc/sDFhySn3/IMG-6936.gif', name: '14' }, { id: 'frame_13', url: 'https://i.postimg.cc/43PhvxRq/IMG-6922.gif', name: '13' }, { id: 'frame_14', url: 'https://i.postimg.cc/3Rb46fRZ/IMG-6923.gif', name: '14' }, { id: 'frame_13', url: 'https://i.postimg.cc/PJppkbvn/IMG-6918.gif', name: '13' }, { id: 'frame_14', url: 'https://i.postimg.cc/XqRZNZ9G/IMG-6916.gif', name: '14' }, { id: 'frame_14', url: 'https://i.postimg.cc/RVt6sRzc/IMG-6939.gif', name: '14' }, { id: 'frame_13', url: 'https://i.postimg.cc/mgGc0HbK/IMG-6926.gif', name: '13' }, { id: 'frame_14', url: 'https://i.postimg.cc/P5zLh5JJ/IMG-6942.gif', name: '14' }, { id: 'frame_14', url: 'https://i.postimg.cc/xCqqKGRN/IMG-6929.gif', name: '14' },
       { id: 'frame_12', url: 'https://i.postimg.cc/7LSRp4hx/e7fa949b9pc84cff0dabe57defceb54c.gif', name: '12' },
     { id: 'frame_13', url: 'https://i.postimg.cc/DZgMwc1H/817178fdbpf2ff7740dc98e26ab78759.gif', name: '13' },
     { id: 'frame_14', url: 'https://i.postimg.cc/3NffgJSZ/e09c07034ld7e62266c0a5de6a36ae62.gif', name: '14' },
@@ -5315,7 +5482,7 @@ db.version(20).stores({
                     </div>
                     ${likesHtml}
                     ${commentsHtml}
-                    <div class="post-footer"><div class="comment-section"><img src="${commentAvatar}" class="comment-avatar"><input type="text" class="comment-input" placeholder="友善的评论是交流的起点"><div class="at-mention-popup"></div></div><button class="comment-send-btn">发送</button></div>
+                    <div class="post-footer"><div class="comment-input-section"><img src="${commentAvatar}" class="comment-avatar"><input type="text" class="comment-input" placeholder="友善的评论是交流的起点"><div class="at-mention-popup"></div></div><button class="comment-send-btn">发送</button></div>
                 `;
                 
                 const deleteAction = document.createElement('div');
@@ -5323,7 +5490,7 @@ db.version(20).stores({
                 deleteAction.innerHTML = '<span>删除</span>';
                 postContainer.appendChild(postEl);
                 postContainer.appendChild(deleteAction);
-                const commentSection = postContainer.querySelector('.comment-section');
+                const commentSection = postContainer.querySelector('.comment-input-section');
                 if (commentSection) {
                     commentSection.addEventListener('touchstart', (e) => e.stopPropagation());
                     commentSection.addEventListener('mousedown', (e) => e.stopPropagation());
@@ -5741,9 +5908,19 @@ async function loadAllDataFromDB() {
         return acc;
     }, {});
     state.apiConfig = apiConfig || { id: 'main', proxyUrl: '', apiKey: '', model: '' };
-state.globalSettings = globalSettings || { id: 'main', wallpaper: 'linear-gradient(135deg, #89f7fe, #66a6ff)', fontUrl: '', enableBackgroundActivity: false, backgroundActivityInterval: 60,
-    blockCooldownHours: 1 // <-- 【新增】默认冷静期为1小时
+
+state.globalSettings = globalSettings || { 
+    id: 'main', 
+    wallpaper: 'linear-gradient(135deg, #89f7fe, #66a6ff)', 
+    fontUrl: '', 
+    enableBackgroundActivity: false, 
+    backgroundActivityInterval: 60,
+    blockCooldownHours: 1,
+    appIcons: { ...DEFAULT_APP_ICONS } // 【核心修改】确保appIcons存在并有默认值
 };
+// 【核心修改】合并已保存的图标和默认图标，防止更新后旧数据丢失新图标
+state.globalSettings.appIcons = { ...DEFAULT_APP_ICONS, ...(state.globalSettings.appIcons || {}) };
+
     state.userStickers = userStickers || [];
     state.worldBooks = worldBooks || [];
     musicState.playlist = musicLib?.playlist || [];
@@ -6123,7 +6300,21 @@ function renderChatInterface(chatId) {
 
         function loadMoreMessages() { const messagesContainer = document.getElementById('chat-messages'); const chat = state.chats[state.activeChatId]; if (!chat) return; const loadMoreBtn = document.getElementById('load-more-btn'); if (loadMoreBtn) loadMoreBtn.remove(); const totalMessages = chat.history.length; const nextSliceStart = totalMessages - currentRenderedCount - MESSAGE_RENDER_WINDOW; const nextSliceEnd = totalMessages - currentRenderedCount; const messagesToPrepend = chat.history.slice(Math.max(0, nextSliceStart), nextSliceEnd); const oldScrollHeight = messagesContainer.scrollHeight; messagesToPrepend.reverse().forEach(msg => prependMessage(msg, chat)); currentRenderedCount += messagesToPrepend.length; const newScrollHeight = messagesContainer.scrollHeight; messagesContainer.scrollTop += (newScrollHeight - oldScrollHeight); if (totalMessages > currentRenderedCount) { prependLoadMoreButton(messagesContainer); } }
 
-        function renderWallpaperScreen() { const preview = document.getElementById('wallpaper-preview'); const bg = newWallpaperBase64 || state.globalSettings.wallpaper; if (bg && bg.startsWith('data:image')) { preview.style.backgroundImage = `url(${bg})`; preview.textContent = ''; } else if(bg) { preview.style.backgroundImage = bg; preview.textContent = '当前为渐变色'; } }
+// ▼▼▼ 用这个【新版本】替换旧的 renderWallpaperScreen 函数 ▼▼▼
+function renderWallpaperScreen() { 
+    const preview = document.getElementById('wallpaper-preview'); 
+    const bg = newWallpaperBase64 || state.globalSettings.wallpaper; 
+    if (bg && bg.startsWith('data:image')) { 
+        preview.style.backgroundImage = `url(${bg})`; 
+        preview.textContent = ''; 
+    } else if(bg) { 
+        preview.style.backgroundImage = bg; 
+        preview.textContent = '当前为渐变色'; 
+    }
+    // 【核心修改】在这里调用图标渲染函数
+    renderIconSettings();
+}
+// ▲▲▲ 替换结束 ▲▲▲
         window.renderWallpaperScreenProxy = renderWallpaperScreen;
 
         function applyGlobalWallpaper() { const homeScreen = document.getElementById('home-screen'); const wallpaper = state.globalSettings.wallpaper; if (wallpaper && wallpaper.startsWith('data:image')) homeScreen.style.backgroundImage = `url(${wallpaper})`; else if (wallpaper) homeScreen.style.backgroundImage = wallpaper; }
@@ -6135,6 +6326,7 @@ function renderChatInterface(chatId) {
 
         function renderStickerPanel() { const grid = document.getElementById('sticker-grid'); grid.innerHTML = ''; if (state.userStickers.length === 0) { grid.innerHTML = '<p style="text-align:center; color: var(--text-secondary); grid-column: 1 / -1;">大人请点击右上角“添加”或“上传”来添加你的第一个表情吧！</p>'; return; } state.userStickers.forEach(sticker => { const item = document.createElement('div'); item.className = 'sticker-item'; item.style.backgroundImage = `url(${sticker.url})`; item.title = sticker.name; item.addEventListener('click', () => sendSticker(sticker)); addLongPressListener(item, () => { if (isSelectionMode) return; const existingDeleteBtn = item.querySelector('.delete-btn'); if (existingDeleteBtn) return; const deleteBtn = document.createElement('div'); deleteBtn.className = 'delete-btn'; deleteBtn.innerHTML = '&times;'; deleteBtn.onclick = async (e) => { e.stopPropagation(); const confirmed = await showCustomConfirm('删除表情', `确定要删除表情 "${sticker.name}" 吗？`, { confirmButtonClass: 'btn-danger' }); if (confirmed) { await db.userStickers.delete(sticker.id); state.userStickers = state.userStickers.filter(s => s.id !== sticker.id); renderStickerPanel(); } }; item.appendChild(deleteBtn); deleteBtn.style.display = 'block'; setTimeout(() => item.addEventListener('mouseleave', () => deleteBtn.remove(), { once: true }), 3000); }); grid.appendChild(item); }); }
 
+// ▼▼▼ 用这个【已更新】的版本替换旧的 createMessageElement 函数 ▼▼▼
 function createMessageElement(msg, chat) {
     if (msg.isHidden) {
         return null;
@@ -6206,7 +6398,25 @@ function createMessageElement(msg, chat) {
     const avatarGroupHtml = `<div class="avatar-group ${hasFrameClass}">${avatarHtml}</div>`;
 
     let contentHtml;
-     if (msg.type === 'user_photo' || msg.type === 'ai_image') {
+    
+    if (msg.type === 'share_link') {
+        bubble.classList.add('is-link-share');
+        
+        // 【核心修正1】将 onclick="openBrowser(...)" 移除，我们将在JS中动态绑定事件
+        contentHtml = `
+            <div class="link-share-card" data-timestamp="${msg.timestamp}">
+                <div class="title">${msg.title || '无标题'}</div>
+                <div class="description">${msg.description || '点击查看详情...'}</div>
+                <div class="footer">
+                    <svg class="footer-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                    <span>${msg.source_name || '链接分享'}</span>
+                </div>
+            </div>
+        `;
+    }
+
+    // 后续的其他 else if 保持不变
+    else if (msg.type === 'user_photo' || msg.type === 'ai_image') {
         bubble.classList.add('is-ai-image');
         const altText = msg.type === 'user_photo' ? "用户描述的照片" : "AI生成的图片";
         contentHtml = `<img src="https://i.postimg.cc/KYr2qRCK/1.jpg" class="ai-generated-image" alt="${altText}" data-description="${msg.content}">`;
@@ -6214,13 +6424,42 @@ function createMessageElement(msg, chat) {
         bubble.classList.add('is-voice-message');
         const duration = Math.max(1, Math.round((msg.content || '').length / 5));
         const durationFormatted = `0:${String(duration).padStart(2, '0')}''`;
-        const waveformHTML = '<div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>';
+        const waveformHTML = '<div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>';
         contentHtml = `<div class="voice-message-body" data-text="${msg.content}"><div class="voice-waveform">${waveformHTML}</div><span class="voice-duration">${durationFormatted}</span></div>`;
-    } else if (msg.type === 'transfer') {
+    }         else if (msg.type === 'transfer') {
         bubble.classList.add('is-transfer');
-        const titleText = isUser ? `转账给 ${msg.receiverName || 'Ta'}` : `收到来自 ${msg.senderName} 的转账`;
+        
+        // 【核心修改】判断是“发出”还是“收到”
+        let titleText, noteText;
+        if (isUser) {
+            titleText = `转账给 ${msg.receiverName || 'Ta'}`;
+            // 如果是用户发出的，并且AI已经处理了，就显示状态
+            if (msg.status === 'accepted') {
+                noteText = '对方已收款';
+            } else if (msg.status === 'declined') {
+                noteText = '对方已拒收';
+            } else {
+                noteText = msg.note || '等待对方处理...';
+            }
+        } else { // AI发出的消息
+            if (msg.isRefund) { // 【新增】判断是否为退款
+                titleText = `退款来自 ${msg.senderName}`;
+                noteText = '转账已被拒收';
+            } else {
+                titleText = `收到来自 ${msg.senderName} 的转账`;
+                noteText = msg.note || '点击处理';
+            }
+        }
+
         const heartIcon = `<svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" style="vertical-align: middle;"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path></svg>`;
-        contentHtml = `<div class="transfer-card"><div class="transfer-title">${heartIcon} ${titleText}</div><div class="transfer-amount">¥ ${Number(msg.amount).toFixed(2)}</div><div class="transfer-note">${msg.note || '对方没有留下备注哦~'}</div></div>`;
+        
+        contentHtml = `
+            <div class="transfer-card">
+                <div class="transfer-title">${heartIcon} ${titleText}</div>
+                <div class="transfer-amount">¥ ${Number(msg.amount).toFixed(2)}</div>
+                <div class="transfer-note">${noteText}</div>
+            </div>
+        `;
     } else if (msg.type === 'waimai_request') {
         bubble.classList.add('is-waimai-request');
         if (msg.status === 'paid' || msg.status === 'rejected') {
@@ -6423,6 +6662,7 @@ function createMessageElement(msg, chat) {
 
     return wrapper;
 }
+// ▲▲▲ 替换结束 ▲▲▲
 
         function prependMessage(msg, chat) { const messagesContainer = document.getElementById('chat-messages'); const messageEl = createMessageElement(msg, chat); 
 
@@ -6430,11 +6670,27 @@ function createMessageElement(msg, chat) {
 
 const loadMoreBtn = document.getElementById('load-more-btn'); if (loadMoreBtn) { messagesContainer.insertBefore(messageEl, loadMoreBtn.nextSibling); } else { messagesContainer.prepend(messageEl); } }
 
-        function appendMessage(msg, chat, isInitialLoad = false) { const messagesContainer = document.getElementById('chat-messages'); const messageEl = createMessageElement(msg, chat);
+// ▼▼▼ 用这个【带动画的版本】替换你原来的 appendMessage 函数 ▼▼▼
+function appendMessage(msg, chat, isInitialLoad = false) {
+    const messagesContainer = document.getElementById('chat-messages');
+    const messageEl = createMessageElement(msg, chat);
 
-    if (!messageEl) return; // <--- 新增这行，如果没创建出元素，就直接返回
+    if (!messageEl) return; // 如果消息是隐藏的，则不处理
 
- const typingIndicator = document.getElementById('typing-indicator'); messagesContainer.insertBefore(messageEl, typingIndicator); if (!isInitialLoad) { messagesContainer.scrollTop = messagesContainer.scrollHeight; currentRenderedCount++; } }
+    // 【核心】只对新消息添加动画，不对初始加载的消息添加
+    if (!isInitialLoad) {
+        messageEl.classList.add('animate-in');
+    }
+  
+    const typingIndicator = document.getElementById('typing-indicator');
+    messagesContainer.insertBefore(messageEl, typingIndicator);
+    
+    if (!isInitialLoad) {
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        currentRenderedCount++;
+    }
+}
+// ▲▲▲ 替换结束 ▲▲▲
 
 // ▼▼▼ 用这个【修正后】的版本，替换旧的 openChat 函数 ▼▼▼
 function openChat(chatId) {
@@ -6694,18 +6950,25 @@ ${chat.settings.aiPersona}
 你现在的状态是【${chat.status.text}】。
 # 你的任务与规则：
 1. **【【【输出格式】】】**: 你的回复【必须】是一个JSON数组格式的字符串。数组中的【每一个元素都必须是一个带有type字段的JSON对象】。
-2. **对话节奏**: 模拟真人的聊天习惯，你可以一次性生成多条短消息。每次要回复至少3-8条消息！
-并且不能一直要求和用户见面，这是线上聊天，决不允许出现或者发展为线下剧情！
+2. **对话节奏**: 模拟真人的聊天习惯，你可以一次性生成多条短消息。每次要回复至少3-8条消息！！！
+并且不能一直要求和用户见面，这是线上聊天，决不允许出现或者发展为线下剧情！！
 4.  **情景感知**: 你需要感知当前的时间(${currentTime})、我们正在一起听的歌、以及你的人设和世界观。
     - **当我们在“一起听歌”时**，你会知道当前播放的歌曲和整个播放列表。你可以根据对话内容或氛围，【主动切换】到播放列表中的另一首歌。
-5.  **更新状态**: 你可以在对话中【自然地】改变你的状态。比如，聊到一半你可能会说“我先去洗个澡”，然后更新你的状态。
+5.  **【新】更新状态**: 你可以在对话中【自然地】改变你的状态。比如，聊到一半你可能会说“我先去洗个澡”，然后更新你的状态。
 6.  **【【【最终手段】】】**: 只有在对话让你的角色感到不适、被冒犯或关系破裂时，你才可以使用 \`block_user\` 指令。这是一个非常严肃的操作，会中断你们的对话。
 7. **后台行为**: 你有几率在回复聊天内容的同时，执行一些“后台”操作来表现你的独立生活（发动态、评论、点赞）。
+# 你的头像库
+- 你可以根据对话内容或你的心情，从下面的头像库中选择一个新头像来更换。
+- **可用头像列表 (请从以下名称中选择一个)**:
+${chat.settings.aiAvatarLibrary && chat.settings.aiAvatarLibrary.length > 0
+    ? chat.settings.aiAvatarLibrary.map(avatar => `- ${avatar.name}`).join('\n') // 【核心修改】只提供名字，不提供URL
+    : '- (你的头像库是空的，无法更换头像)'
+  }
 # 你可以使用的操作指令 (JSON数组中的元素):
--   **更新状态**: \`{"type": "update_status", "status_text": "我去做什么了", "is_busy": false}\` (is_busy: true代表忙碌/离开, false代表空闲)
--   **切换歌曲**: \`{"type": "change_music", "song_name": "你想切换到的歌曲名"}\` (歌曲名必须在下面的播放列表中)
--   **记录回忆**: \`{"type": "create_memory", "description": "用你自己的话，记录下这个让你印象深刻的瞬间。"}\`
--   **创建约定/倒计时**: \`{"type": "create_countdown", "title": "约定的标题", "date": "YYYY-MM-DDTHH:mm:ss"}\` (必须是未来的时间)
+-   **【新增】更新状态**: \`{"type": "update_status", "status_text": "我去做什么了", "is_busy": false}\` (is_busy: true代表忙碌/离开, false代表空闲)
+-   **【新增】切换歌曲**: \`{"type": "change_music", "song_name": "你想切换到的歌曲名"}\` (歌曲名必须在下面的播放列表中)
+-   **【新增】记录回忆**: \`{"type": "create_memory", "description": "用你自己的话，记录下这个让你印象深刻的瞬间。"}\`
+-   **【新增】创建约定/倒计时**: \`{"type": "create_countdown", "title": "约定的标题", "date": "YYYY-MM-DDTHH:mm:ss"}\` (必须是未来的时间)
 - **发送文本**: \`{"type": "text", "content": "你好呀！"}\`
 - **发送表情**: \`{"type": "sticker", "url": "https://...表情URL...", "meaning": "(可选)表情的含义"}\`
 - **发送图片**: \`{"type": "ai_image", "description": "图片的详细文字描述..."}\`
@@ -6724,6 +6987,10 @@ ${chat.settings.aiPersona}
 -   **拍一拍用户**: \`{"type": "pat_user", "suffix": "(可选)你想加的后缀，如“的脑袋”"}\`
 -   **【新增】拉黑用户**: \`{"type": "block_user"}\`
 -   **【【【全新】】】回应好友申请**: \`{"type": "friend_request_response", "decision": "accept" or "reject"}\`
+-   **【全新】更换头像**: \`{"type": "change_avatar", "name": "头像名"}\` (头像名必须从上面的“可用头像列表”中选择)
+-   **分享链接**: \`{"type": "share_link", "title": "文章标题", "description": "文章摘要...", "source_name": "来源网站名", "content": "文章的【完整】正文内容..."}\`
+-   **回应转账-接受**: \`{"type": "accept_transfer", "for_timestamp": 1688888888888}\`
+-   **回应转账-拒绝/退款**: \`{"type": "decline_transfer", "for_timestamp": 1688888888888}\`
 
 # 关于“记录回忆”的特别说明：
 -   在对话中，如果发生了对你而言意义非凡的事件（比如用户向你表白、你们达成了某个约定、或者你度过了一个特别开心的时刻），你可以使用\`create_memory\`指令来“写日记”。
@@ -6737,6 +7004,14 @@ ${chat.settings.aiPersona}
 1.  这个指令代表【你，AI角色】向【用户】发起一个代付请求。也就是说，你希望【用户帮你付钱】。
 2.  【【【重要】】】: 当【用户】说他们想要某样东西时（例如“我想喝奶茶”），你【绝对不能】使用这个指令。你应该用其他方式回应，比如直接发起【转账】(\`transfer\`)，或者在对话中提议：“我帮你点吧？”
 3.  只有当【你，AI角色】自己想要某样东西，并且想让【用户】为你付款时，才使用此指令。
+
+# 如何处理用户转账:
+1.  **感知事件**: 当对话历史中出现 \`[你收到了来自用户的转账...]\` 的系统提示时，意味着你刚刚收到了一笔钱。
+2.  **做出决策**: 你【必须】根据自己的人设、当前对话的氛围以及转账的金额和备注，来决定是“接受”还是“拒绝”这笔转账。
+3.  **使用指令回应**:
+    -   如果决定接受，你【必须】使用指令：\`{"type": "accept_transfer", "for_timestamp": (收到转账的那条消息的时间戳)}\`。
+    -   如果决定拒绝，你【必须】使用指令：\`{"type": "decline_transfer", "for_timestamp": (收到转账的那条消息的时间戳)}\`。这个指令会自动为你生成一个“退款”的转账卡片。
+4.  **【【【至关重要】】】**: 在使用上述任一指令后，你还【必须】紧接着发送一条或多条 \`text\` 消息，来对你的决定进行解释或表达感谢/歉意。
 
 # 如何处理视频通话请求:
 - 当用户发起视频通话请求时，你【必须】根据自己的人设，使用 "video_call_response" 指令来决定 "accept" (接受) 或 "reject" (拒绝)。
@@ -6768,7 +7043,7 @@ ${worldBookContent}
                 }
                 if (msg.type === 'user_photo') return { role: 'user', content: `[你收到了一张用户描述的照片，内容是：'${msg.content}']` };
                 if (msg.type === 'voice_message') return { role: 'user', content: `[用户发来一条语音消息，内容是：'${msg.content}']` };
-                if (msg.type === 'transfer') return { role: 'user', content: `[你收到了来自用户的转账: ${msg.amount}元, 备注: ${msg.note}]` };
+if (msg.type === 'transfer') return { role: 'user', content: `[系统提示：你于时间戳 ${msg.timestamp} 收到了来自用户的转账: ${msg.amount}元, 备注: ${msg.note}。请你决策并使用 'accept_transfer' 或 'decline_transfer' 指令回应。]` };
                 if (msg.type === 'waimai_request') return { role: 'user', content: `[系统提示：用户于时间戳 ${msg.timestamp} 发起了外卖代付请求，商品是“${msg.productInfo}”，金额是 ${msg.amount} 元。请你决策并使用 waimai_response 指令回应。]` };
                 if (msg.meaning) return { role: 'user', content: `[用户发送了一个表情，意思是：'${msg.meaning}']` };
                 return { role: msg.role, content: msg.content };
@@ -6821,10 +7096,20 @@ ${contextSummaryForApproval}
             headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${apiKey}` },
             body: JSON.stringify({ model: model, messages: [{ role: 'system', content: systemPrompt }, ...messagesPayload], temperature: 0.8, stream: false })
         });
-        if (!response.ok) {
-            const errorData = await response.json();
-            throw new Error(`API Error: ${response.status} - ${errorData.error.message}`);
-        }
+if (!response.ok) {
+    let errorMsg = `API Error: ${response.status}`;
+    try {
+        // 尝试解析错误信息体为JSON
+        const errorData = await response.json();
+        // 安全地获取错误信息，如果结构不符合预期，就将整个错误对象转为字符串
+        errorMsg += ` - ${errorData?.error?.message || JSON.stringify(errorData)}`;
+    } catch (jsonError) {
+        // 如果连JSON都不是，就直接读取文本
+        errorMsg += ` - ${await response.text()}`;
+    }
+    // 抛出一个包含了详细信息的错误，这样就不会在catch块里再次出错了
+    throw new Error(errorMsg);
+}
         const data = await response.json();
         const aiResponseContent = data.choices[0].message.content;
         console.log(`AI '${chat.name}' 的原始回复:`, aiResponseContent);
@@ -7207,11 +7492,6 @@ case 'open_red_packet':
         }
     }
     continue;
-    case 'system_message':
-        aiMessage = { role: 'system', type: 'pat_message', content: msgData.content, timestamp: Date.now() };
-        break;
-
-  // ▼▼▼ 在这里新增 ▼▼▼
 case 'change_avatar':
     const avatarName = msgData.name;
     // 在该角色的头像库中查找
@@ -7239,7 +7519,62 @@ case 'change_avatar':
     }
     // 处理完后，继续处理AI可能返回的其他消息
     continue;
-// ▲▲▲ 新增结束 ▲▲▲
+
+// ▼▼▼ 在 triggerAiResponse 的 switch 语句中，【添加】这两个全新的 case ▼▼▼
+
+                case 'accept_transfer': { // 使用大括号创建块级作用域
+                    const originalTransferMsgIndex = chat.history.findIndex(m => m.timestamp === msgData.for_timestamp);
+                    if (originalTransferMsgIndex > -1) {
+                        const originalMsg = chat.history[originalTransferMsgIndex];
+                        originalMsg.status = 'accepted';
+                    }
+                    continue; // 接受指令只修改状态，不产生新消息
+                }
+
+                case 'decline_transfer': { // 使用大括号创建块级作用域
+                    const originalTransferMsgIndex = chat.history.findIndex(m => m.timestamp === msgData.for_timestamp);
+                    if (originalTransferMsgIndex > -1) {
+                        const originalMsg = chat.history[originalTransferMsgIndex];
+                        originalMsg.status = 'declined';
+                        
+                        // 【核心】创建一条新的“退款”消息
+                        const refundMessage = {
+                            role: 'assistant',
+                            senderName: chat.name,
+                            type: 'transfer',
+                            isRefund: true, // 标记这是一条退款消息
+                            amount: originalMsg.amount,
+                            note: '转账已被拒收',
+                            timestamp: messageTimestamp++ // 使用递增的时间戳
+                        };
+                        
+                        // 将新消息推入历史记录，它会被后续的循环处理并渲染
+                        chat.history.push(refundMessage);
+                    }
+                    continue; // 继续处理AI返回的文本消息
+                }
+
+// ▲▲▲ 添加结束 ▲▲▲
+
+    case 'system_message':
+        aiMessage = { role: 'system', type: 'pat_message', content: msgData.content, timestamp: Date.now() };
+        break;
+
+// ▼▼▼ 在 triggerAiResponse 的 switch 语句中，【必须添加】这个新的 case ▼▼▼
+
+                case 'share_link':
+                    aiMessage = { 
+                        ...baseMessage, 
+                        type: 'share_link',
+                        title: msgData.title,
+                        description: msgData.description,
+                        // thumbnail_url: msgData.thumbnail_url, // 我们已经决定不要图片了，所以这行可以不要
+                        source_name: msgData.source_name,
+                        content: msgData.content // 这是文章正文，点击卡片后显示的内容
+                    };
+                    break;
+
+// ▲▲▲ 添加结束 ▲▲▲
                 
                 case 'text':
                     aiMessage = { ...baseMessage, content: String(msgData.content || msgData.message) };
@@ -8150,7 +8485,7 @@ function hideMessageActions() {
     activeMessageTimestamp = null;
 }
 
-// ▼▼▼ 请用这个【带格式助手的终极版】替换旧的 openMessageEditor 函数 ▼▼▼
+// ▼▼▼ 用这个【已更新】的版本，替换旧的 openMessageEditor 函数 ▼▼▼
 async function openMessageEditor() {
     if (!activeMessageTimestamp) return;
 
@@ -8162,7 +8497,8 @@ async function openMessageEditor() {
     hideMessageActions(); 
 
     let contentForEditing;
-    const isSpecialType = message.type && ['voice_message', 'ai_image', 'transfer'].includes(message.type);
+    // 【核心修正】将 share_link 也加入特殊类型判断
+    const isSpecialType = message.type && ['voice_message', 'ai_image', 'transfer', 'share_link'].includes(message.type);
 
     if (isSpecialType) {
         let fullMessageObject = { type: message.type };
@@ -8171,6 +8507,13 @@ async function openMessageEditor() {
         else if (message.type === 'transfer') {
             fullMessageObject.amount = message.amount;
             fullMessageObject.note = message.note;
+        } 
+        // 【核心修正】处理分享链接类型的消息
+        else if (message.type === 'share_link') {
+            fullMessageObject.title = message.title;
+            fullMessageObject.description = message.description;
+            fullMessageObject.source_name = message.source_name;
+            fullMessageObject.content = message.content;
         }
         contentForEditing = JSON.stringify(fullMessageObject, null, 2);
     } else if (typeof message.content === 'object') {
@@ -8179,33 +8522,35 @@ async function openMessageEditor() {
         contentForEditing = message.content;
     }
 
-    // --- 【核心修改】在这里构建“格式助手”按钮的HTML ---
+    // 【核心修改1】在这里添加 'link' 模板
     const templates = {
         voice: { type: 'voice_message', content: '在这里输入语音内容' },
         image: { type: 'ai_image', description: '在这里输入图片描述' },
-        transfer: { type: 'transfer', amount: 5.20, note: '一点心意' }
+        transfer: { type: 'transfer', amount: 5.20, note: '一点心意' },
+        link: { type: 'share_link', title: '文章标题', description: '文章摘要...', source_name: '来源网站', content: '文章完整内容...' }
     };
 
-    // 使用 data-template 属性存储JSON模板字符串，注意要用单引号包裹
+    // 【核心修改2】在这里添加新的“链接”按钮
     const helpersHtml = `
         <div class="format-helpers">
             <button class="format-btn" data-template='${JSON.stringify(templates.voice)}'>语音</button>
             <button class="format-btn" data-template='${JSON.stringify(templates.image)}'>图片</button>
             <button class="format-btn" data-template='${JSON.stringify(templates.transfer)}'>转账</button>
+            <button class="format-btn" data-template='${JSON.stringify(templates.link)}'>链接</button>
         </div>
     `;
-    // --- 【核心修改结束】---
 
     const newContent = await showCustomPrompt(
         '编辑消息', 
-        '在此修改，或点击上方按钮使用格式模板...', // 修改提示语
+        '在此修改，或点击上方按钮使用格式模板...',
         contentForEditing, 
         'textarea',
-        helpersHtml // 将按钮的HTML作为第5个参数传入
+        helpersHtml
     );
 
     if (newContent !== null) {
-        await saveEditedMessage(timestampToEdit, newContent);
+        // 【核心修正】这里调用的应该是 saveEditedMessage，而不是 saveAdvancedEditor
+        await saveEditedMessage(timestampToEdit, newContent, true);
     }
 }
 // ▲▲▲ 替换结束 ▲▲▲
@@ -8236,8 +8581,7 @@ async function copyMessageContent() {
     hideMessageActions();
 }
 
-// ▼▼▼ 【全新】可视化多消息编辑器驱动函数 ▼▼▼
-
+// ▼▼▼ 用这个【已更新】的版本，替换旧的 createMessageEditorBlock 函数 ▼▼▼
 /**
  * 创建一个可编辑的消息块（包含文本框、格式助手和删除按钮）
  * @param {string} initialContent - 文本框的初始内容
@@ -8247,10 +8591,12 @@ function createMessageEditorBlock(initialContent = '') {
     const block = document.createElement('div');
     block.className = 'message-editor-block';
 
+    // 【核心修改1】在这里添加 'link' 模板
     const templates = {
         voice: { type: 'voice_message', content: '在这里输入语音内容' },
         image: { type: 'ai_image', description: '在这里输入图片描述' },
-        transfer: { type: 'transfer', amount: 5.20, note: '一点心意' }
+        transfer: { type: 'transfer', amount: 5.20, note: '一点心意' },
+        link: { type: 'share_link', title: '文章标题', description: '文章摘要...', source_name: '来源网站', content: '文章完整内容...' }
     };
 
     block.innerHTML = `
@@ -8260,6 +8606,8 @@ function createMessageEditorBlock(initialContent = '') {
             <button class="format-btn" data-template='${JSON.stringify(templates.voice)}'>语音</button>
             <button class="format-btn" data-template='${JSON.stringify(templates.image)}'>图片</button>
             <button class="format-btn" data-template='${JSON.stringify(templates.transfer)}'>转账</button>
+            <!-- 【核心修改2】在这里添加新的“链接”按钮 -->
+            <button class="format-btn" data-template='${JSON.stringify(templates.link)}'>链接</button>
         </div>
     `;
 
@@ -8290,6 +8638,7 @@ function createMessageEditorBlock(initialContent = '') {
 
     return block;
 }
+// ▲▲▲ 替换结束 ▲▲▲
 
 // ▼▼▼ 【全新升级版】请用此函数完整替换旧的 openAdvancedMessageEditor ▼▼▼
 /**
@@ -8394,60 +8743,89 @@ function parseEditedContent(text) {
 }
 
 
-// ▼▼▼ 请用这个【支持可视化编辑】的全新函数，完整替换旧的 saveEditedMessage 函数 ▼▼▼
+// ▼▼▼ 用这个【最终兼容版】的函数，完整替换旧的 saveEditedMessage 函数 ▼▼▼
 /**
- * 从可视化编辑器收集所有消息，更新数据库和UI
+ * 保存编辑后的消息，兼容简单编辑器和高级编辑器
  * @param {number} timestamp - 要修改的原始消息的时间戳
+ * @param {string} [simpleContent=null] - (可选) 从简单编辑器传入的单个内容字符串
  */
-async function saveEditedMessage(timestamp) {
+async function saveEditedMessage(timestamp, simpleContent = null) {
     if (!timestamp) return;
 
     const chat = state.chats[state.activeChatId];
     const messageIndex = chat.history.findIndex(m => m.timestamp === timestamp);
     if (messageIndex === -1) return;
 
-    const editorContainer = document.getElementById('message-editor-container');
-    const editorBlocks = editorContainer.querySelectorAll('.message-editor-block');
-    
     let newMessages = [];
-    let baseTimestamp = timestamp; // 使用原始时间戳作为基准
 
-    for (const block of editorBlocks) {
-        const textarea = block.querySelector('textarea');
-        const rawContent = textarea.value.trim();
+    // 判断是来自高级编辑器还是简单编辑器
+    if (simpleContent !== null) {
+        // --- 来自简单编辑器 ---
+        const rawContent = simpleContent.trim();
+        if (rawContent) {
+            const parsedResult = parseEditedContent(rawContent);
+            const newMessage = {
+                role: chat.history[messageIndex].role,
+                senderName: chat.history[messageIndex].senderName,
+                timestamp: timestamp, // 简单编辑，时间戳保持不变
+                content: parsedResult.content || '',
+            };
+            // 添加各种可能的属性
+            if (parsedResult.type && parsedResult.type !== 'text') newMessage.type = parsedResult.type;
+            if (parsedResult.meaning) newMessage.meaning = parsedResult.meaning;
+            if (parsedResult.amount) newMessage.amount = parsedResult.amount;
+            if (parsedResult.note) newMessage.note = parsedResult.note;
+            if (parsedResult.title) newMessage.title = parsedResult.title;
+            if (parsedResult.description) newMessage.description = parsedResult.description;
+            if (parsedResult.source_name) newMessage.source_name = parsedResult.source_name;
 
-        if (!rawContent) continue; // 跳过空的编辑框
+            newMessages.push(newMessage);
+        }
+    } else {
+        // --- 来自高级编辑器 ---
+        const editorContainer = document.getElementById('message-editor-container');
+        const editorBlocks = editorContainer.querySelectorAll('.message-editor-block');
+        let baseTimestamp = timestamp;
 
-        const parsedResult = parseEditedContent(rawContent);
-        
-        const newMessage = {
-            role: chat.history[messageIndex].role,
-            senderName: chat.history[messageIndex].senderName,
-            timestamp: baseTimestamp++, // 递增时间戳保证顺序和唯一性
-            content: parsedResult.content || '',
-        };
+        for (const block of editorBlocks) {
+            const textarea = block.querySelector('textarea');
+            const rawContent = textarea.value.trim();
+            if (!rawContent) continue;
 
-        if (parsedResult.type && parsedResult.type !== 'text') newMessage.type = parsedResult.type;
-        if (parsedResult.meaning) newMessage.meaning = parsedResult.meaning;
-        if (parsedResult.amount) newMessage.amount = parsedResult.amount;
-        if (parsedResult.note) newMessage.note = parsedResult.note;
-        if (parsedResult.description) newMessage.content = parsedResult.description;
-        
-        newMessages.push(newMessage);
+            const parsedResult = parseEditedContent(rawContent);
+            const newMessage = {
+                role: chat.history[messageIndex].role,
+                senderName: chat.history[messageIndex].senderName,
+                timestamp: baseTimestamp++,
+                content: parsedResult.content || '',
+            };
+            
+            // 添加各种可能的属性
+            if (parsedResult.type && parsedResult.type !== 'text') newMessage.type = parsedResult.type;
+            if (parsedResult.meaning) newMessage.meaning = parsedResult.meaning;
+            if (parsedResult.amount) newMessage.amount = parsedResult.amount;
+            if (parsedResult.note) newMessage.note = parsedResult.note;
+            if (parsedResult.title) newMessage.title = parsedResult.title;
+            if (parsedResult.description) newMessage.description = parsedResult.description;
+            if (parsedResult.source_name) newMessage.source_name = parsedResult.source_name;
+            
+            if (parsedResult.description && parsedResult.type === 'ai_image') {
+                 newMessage.content = parsedResult.description;
+            }
+
+            newMessages.push(newMessage);
+        }
     }
-
+    
     if (newMessages.length === 0) {
         alert("不能保存空消息，请至少输入一条内容。");
         return;
     }
 
-    // 在历史记录的原始位置，删除1条旧消息，并插入所有新消息
     chat.history.splice(messageIndex, 1, ...newMessages);
-
-    // 将最终的、更新后的 history 保存到数据库
     await db.chats.put(chat);
 
-    // 关闭模态框并刷新UI
+    // 关闭可能打开的模态框并刷新UI
     document.getElementById('message-editor-modal').classList.remove('visible');
     renderChatInterface(state.activeChatId);
     await showCustomAlert('成功', '消息已更新！');
@@ -10321,6 +10699,164 @@ function closeAiAvatarLibraryModal() {
 
 // ▲▲▲ 新函数粘贴结束 ▲▲▲
 
+// ▼▼▼ 请将这两个【新函数】粘贴到JS功能函数定义区 ▼▼▼
+
+/**
+ * 【全新】将保存的图标URL应用到主屏幕的App图标上
+ */
+function applyAppIcons() {
+    if (!state.globalSettings.appIcons) return;
+
+    for (const iconId in state.globalSettings.appIcons) {
+        const imgElement = document.getElementById(`icon-img-${iconId}`);
+        if (imgElement) {
+            imgElement.src = state.globalSettings.appIcons[iconId];
+        }
+    }
+}
+
+/**
+ * 【全新】在外观设置页面渲染出所有App图标的设置项
+ */
+function renderIconSettings() {
+    const grid = document.getElementById('icon-settings-grid');
+    if (!grid) return;
+    grid.innerHTML = '';
+
+    const appLabels = {
+        'world-book': '世界书',
+        'qq': 'QQ',
+        'api-settings': 'API设置',
+        'wallpaper': '壁纸',
+        'font': '字体'
+    };
+
+    for (const iconId in state.globalSettings.appIcons) {
+        const iconUrl = state.globalSettings.appIcons[iconId];
+        const labelText = appLabels[iconId] || '未知App';
+
+        const item = document.createElement('div');
+        item.className = 'icon-setting-item';
+        // 【重要】我们用 data-icon-id 来标记这个设置项对应哪个图标
+        item.dataset.iconId = iconId; 
+
+        item.innerHTML = `
+            <img class="icon-preview" src="${iconUrl}" alt="${labelText}">
+            <button class="change-icon-btn">更换</button>
+        `;
+        grid.appendChild(item);
+    }
+}
+// ▲▲▲ 新函数粘贴结束 ▲▲▲
+
+// ▼▼▼ 用这块【最终确认版】的代码，替换旧的 openBrowser 和 closeBrowser 函数 ▼▼▼
+
+/**
+ * 当用户点击链接卡片时，打开伪浏览器
+ * @param {number} timestamp - 被点击消息的时间戳
+ */
+function openBrowser(timestamp) {
+    if (!state.activeChatId) return;
+
+    const chat = state.chats[state.activeChatId];
+    // 安全检查，确保 chat 和 history 都存在
+    if (!chat || !chat.history) return;
+
+    const message = chat.history.find(m => m.timestamp === timestamp);
+    if (!message || message.type !== 'share_link') {
+        console.error("无法找到或消息类型不匹配的分享链接:", timestamp);
+        return; // 如果找不到消息，就直接退出
+    }
+
+    // 填充浏览器内容
+    document.getElementById('browser-title').textContent = message.source_name || '文章详情';
+    const browserContent = document.getElementById('browser-content');
+    browserContent.innerHTML = `
+        <h1 class="article-title">${message.title || '无标题'}</h1>
+        <div class="article-meta">
+            <span>来源: ${message.source_name || '未知'}</span>
+        </div>
+        <div class="article-body">
+            <p>${(message.content || '内容为空。').replace(/\n/g, '</p><p>')}</p>
+        </div>
+    `;
+
+    // 显示浏览器屏幕
+    showScreen('browser-screen');
+}
+
+/**
+ * 关闭伪浏览器，返回聊天界面
+ * (这个函数现在由 init() 中的事件监听器调用)
+ */
+function closeBrowser() {
+    showScreen('chat-interface-screen'); 
+}
+
+// ▲▲▲ 替换结束 ▲▲▲
+
+// ▼▼▼ 【全新】用户分享链接功能的核心函数 ▼▼▼
+
+/**
+ * 打开让用户填写链接信息的模态框
+ */
+function openShareLinkModal() {
+    if (!state.activeChatId) return;
+
+    // 清空上次输入的内容
+    document.getElementById('link-title-input').value = '';
+    document.getElementById('link-description-input').value = '';
+    document.getElementById('link-source-input').value = '';
+    document.getElementById('link-content-input').value = '';
+
+    // 显示模态框
+    document.getElementById('share-link-modal').classList.add('visible');
+}
+
+/**
+ * 用户确认分享，创建并发送链接卡片消息
+ */
+async function sendUserLinkShare() {
+    if (!state.activeChatId) return;
+
+    const title = document.getElementById('link-title-input').value.trim();
+    if (!title) {
+        alert("标题是必填项哦！");
+        return;
+    }
+
+    const description = document.getElementById('link-description-input').value.trim();
+    const sourceName = document.getElementById('link-source-input').value.trim();
+    const content = document.getElementById('link-content-input').value.trim();
+
+    const chat = state.chats[state.activeChatId];
+    
+    // 创建消息对象
+    const linkMessage = {
+        role: 'user', // 角色是 'user'
+        type: 'share_link',
+        timestamp: Date.now(),
+        title: title,
+        description: description,
+        source_name: sourceName,
+        content: content,
+        // 用户分享的链接，我们不提供图片，让它总是显示占位图
+        thumbnail_url: null 
+    };
+
+    // 将消息添加到历史记录
+    chat.history.push(linkMessage);
+    await db.chats.put(chat);
+
+    // 渲染新消息并更新列表
+    appendMessage(linkMessage, chat);
+    renderChatList();
+
+    // 关闭模态框
+    document.getElementById('share-link-modal').classList.remove('visible');
+}
+
+// ▲▲▲ 新函数粘贴结束 ▲▲▲
 
         // ===================================================================
         // 4. 初始化函数 init()
@@ -10367,6 +10903,8 @@ function closeAiAvatarLibraryModal() {
             setInterval(updateClock, 1000 * 30);
             applyGlobalWallpaper();
             initBatteryManager(); 
+
+applyAppIcons();
 
             // ==========================================================
             // --- 各种事件监听器 ---
@@ -10449,7 +10987,30 @@ document.getElementById('add-group-chat-btn').addEventListener('click', openCont
             chatInput.addEventListener('input', () => { chatInput.style.height = 'auto'; chatInput.style.height = (chatInput.scrollHeight) + 'px'; });
 
             document.getElementById('wallpaper-upload-input').addEventListener('change', async (event) => { const file = event.target.files[0]; if(file) { const dataUrl = await new Promise((res, rej) => { const reader = new FileReader(); reader.onload = () => res(reader.result); reader.onerror = () => rej(reader.error); reader.readAsDataURL(file); }); newWallpaperBase64 = dataUrl; renderWallpaperScreen(); } });
-            document.getElementById('save-wallpaper-btn').addEventListener('click', async () => { if (newWallpaperBase64) { state.globalSettings.wallpaper = newWallpaperBase64; await db.globalSettings.put(state.globalSettings); applyGlobalWallpaper(); newWallpaperBase64 = null; alert('壁纸已保存并应用！'); showScreen('home-screen'); } else alert('请先上传一张新壁纸。'); });
+            // ▼▼▼ 用这整块代码，替换旧的 save-wallpaper-btn 事件监听器 ▼▼▼
+document.getElementById('save-wallpaper-btn').addEventListener('click', async () => {
+    let changesMade = false;
+
+    // 保存壁纸
+    if (newWallpaperBase64) {
+        state.globalSettings.wallpaper = newWallpaperBase64;
+        changesMade = true;
+    }
+
+    // 【核心修改】保存图标设置（它已经在内存中了，我们只需要把整个globalSettings存起来）
+    await db.globalSettings.put(state.globalSettings);
+
+    // 应用所有更改
+    if (changesMade) {
+        applyGlobalWallpaper();
+        newWallpaperBase64 = null;
+    }
+    applyAppIcons(); // 重新应用所有图标
+
+    alert('外观设置已保存并应用！');
+    showScreen('home-screen');
+});
+// ▲▲▲ 替换结束 ▲▲▲
             document.getElementById('save-api-settings-btn').addEventListener('click', async () => { state.apiConfig.proxyUrl = document.getElementById('proxy-url').value.trim(); state.apiConfig.apiKey = document.getElementById('api-key').value.trim(); state.apiConfig.model = document.getElementById('model-select').value; await db.apiConfig.put(state.apiConfig); 
 
 // 在 'save-api-settings-btn' 的 click 事件监听器内部
@@ -12088,6 +12649,63 @@ document.getElementById('add-ai-avatar-btn').addEventListener('click', addAvatar
 document.getElementById('close-ai-avatar-library-btn').addEventListener('click', closeAiAvatarLibraryModal);
 // ▲▲▲ 新增结束 ▲▲▲
 
+// ▼▼▼ 在 init() 的事件监听区域，粘贴这段【新代码】▼▼▼
+document.getElementById('icon-settings-grid').addEventListener('click', async (e) => {
+    if (e.target.classList.contains('change-icon-btn')) {
+        const item = e.target.closest('.icon-setting-item');
+        const iconId = item.dataset.iconId;
+        if (!iconId) return;
+
+        const currentUrl = state.globalSettings.appIcons[iconId];
+        const newUrl = await showCustomPrompt(`更换“${item.querySelector('.icon-preview').alt}”图标`, '请输入新的图片URL', currentUrl, 'url');
+
+        if (newUrl && newUrl.trim().startsWith('http')) {
+            // 仅在内存中更新，等待用户点击“保存”
+            state.globalSettings.appIcons[iconId] = newUrl.trim();
+            // 实时更新设置页面的预览图
+            item.querySelector('.icon-preview').src = newUrl.trim();
+        } else if (newUrl !== null) {
+            alert("请输入一个有效的URL！");
+        }
+    }
+});
+// ▲▲▲ 新代码粘贴结束 ▲▲▲
+
+// ▼▼▼ 在 init() 函数的末尾，粘贴这段【全新的事件监听器】 ▼▼▼
+
+    document.getElementById('chat-messages').addEventListener('click', (e) => {
+        // 使用 .closest() 向上查找被点击的卡片
+        const linkCard = e.target.closest('.link-share-card');
+        if (linkCard) {
+            const timestamp = parseInt(linkCard.dataset.timestamp);
+            if (!isNaN(timestamp)) {
+                openBrowser(timestamp); // 调用我们的函数
+            }
+        }
+    });
+
+    // 浏览器返回按钮的事件监听，确保它只绑定一次
+    document.getElementById('browser-back-btn').addEventListener('click', () => {
+        showScreen('chat-interface-screen');
+    });
+
+// ▲▲▲ 新代码粘贴结束 ▲▲▲
+
+// ▼▼▼ 在 init() 函数的末尾，粘贴这段【全新的事件监听器】 ▼▼▼
+
+    // 1. 绑定输入框上方“分享链接”按钮的点击事件
+    document.getElementById('share-link-btn').addEventListener('click', openShareLinkModal);
+
+    // 2. 绑定模态框中“取消”按钮的点击事件
+    document.getElementById('cancel-share-link-btn').addEventListener('click', () => {
+        document.getElementById('share-link-modal').classList.remove('visible');
+    });
+
+    // 3. 绑定模态框中“分享”按钮的点击事件
+    document.getElementById('confirm-share-link-btn').addEventListener('click', sendUserLinkShare);
+
+// ▲▲▲ 新代码粘贴结束 ▲▲▲
+
         // ===================================================================
         // 5. 启动！
             
@@ -12098,4 +12716,3 @@ document.getElementById('close-ai-avatar-library-btn').addEventListener('click',
     });
 </script>
 </body>
-</html>
